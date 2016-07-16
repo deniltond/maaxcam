@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap %}
+
+{% block body_class %}account account-settings{% endblock %}
+
+{% block head_title %}Restrito{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-5">
+         
+            Olá {{request.user.username.title}}
+            
+            {% for a in assinaturas %}
+			<div>
+			    Assinatura {{ a.id }}<br>
+			    {% for f in a.fatura_set.all %}
+			    <b>Fatura:</b>{{f.id}}<br>
+			    {% endfor %}
+			</div>
+			{% endfor %}
+            
+        </div>
+    </div>
+{% endblock %}

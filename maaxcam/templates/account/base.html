@@ -1,0 +1,41 @@
+{% extends "theme_bootstrap/subnav_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}account{% endblock %}
+
+{% block subnav %}
+<div class="panel panel-default">
+
+   <div class="panel-heading"><strong>Assinaturas</strong></div>
+    <div class="list-group">
+        <a class="list-group-item account-settings" href="{% url "home_back" %}">
+            Faturas
+        </a>
+        <a class="list-group-item" href="{% url "cliente_view" %}">
+            Dados cadastrais
+        </a>
+        <a class="list-group-item" href="{% url "home_back" %}">
+            Dependentes
+        </a>
+        <a class="list-group-item" href="{% url "home_back" %}">
+            Indicações
+        </a>
+
+    </div>
+
+    <div class="panel-heading"><strong>Acesso</strong></div>
+    <div class="list-group">
+    	
+        <a class="list-group-item account-settings" href="{% url "account_settings" %}">
+            Conta
+        </a>
+        <a class="list-group-item account-password" href="{% url "account_password" %}">
+            {% trans "Change password" %}
+        </a>
+        <a class="list-group-item account-delete" href="{% url "account_delete" %}">
+            Excluir conta
+        </a>
+    </div>
+</div>
+{% endblock %}
