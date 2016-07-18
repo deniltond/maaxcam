@@ -10,45 +10,47 @@
     <meta name="keywords" content="cctv, monitoramento, vigilancia, cameras, monitoramento compartilhado, monitoramento de rua, monitoramento de vizinhança, vizinho solidário" />
     <meta name="author" content="SEPTEM">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+	
+	{% load staticfiles %}
+    
     <!-- FAVICON  -->
-    <link rel="icon" href="http://septemweb.com.br/websites/maaxcam/assets/images/favicon/favicon.ico">
+    <link rel="icon" href="assets/images/favicon/maaxcam_favicon.png">
 
     <!-- =========================
        STYLESHEETS
     ============================== -->
 
     <!-- BOOTSTRAP CSS -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/bootstrap.min.css'%}">
 
     <!-- FONT ICONS -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/icons/icons.min.css">
-
+    <link rel="stylesheet" href="{% static 'assets/css/icons/icons.min.css'%}">
+    
     <!-- GOOGLE FONTS -->
     <link href="http://fonts.googleapis.com/css?family=Raleway:300,400,600,700%7COpen+Sans:300,400,600,700%7CHandlee" rel="stylesheet">
 
     <!-- PLUGINS STYLESHEET -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/plugins.min.css'%}">
 
     <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/style.css">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
 
     <!-- RESPONSIVE FIXES -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/responsive.css">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
 
     <!-- CAROUSEL -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/carousel.css">
+    <link rel="stylesheet" href="{% static 'assets/css/carousel.css'%}">
 
     <!-- COLORE STYLESHEET -->
-    <!-- Change here the Main Color of the Site: Choose your favorite predefined color from http://septemweb.com.br/websites/maaxcam/assets/css/colors.css -->
-    <link rel="stylesheet" href="http://septemweb.com.br/websites/maaxcam/assets/css/colors/blue.css" title="red">
+    <!-- Change here the Main Color of the Site: Choose your favorite predefined color from assets/css/colors.css -->
+    <link rel="stylesheet" href="{% static 'assets/css/colors/blue.css'%}" title="red">
 
     <!-- FONT AWESOME -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
-            <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/html5shiv.min.js"></script>
-            <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/respond.min.js"></script>
+            <script src="assets/js/plugins/html5shiv.min.js"></script>
+            <script src="assets/js/plugins/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -107,7 +109,7 @@
                                     <!-- Image-Logo: Remove this comments and the section above Text-Logo if you want to add an Image-Logo (recommended sizes -> max-height:50, max-width:200)
 -->
                                     <a href="#top" class="navbar-brand img-logo scrollto" title="MaaxCam">
-                                        <img src="http://septemweb.com.br/websites/maaxcam/assets/images/logo_small.png" alt="Logo">
+                                        <img src="{% static 'assets/images/logo_small.png'%}" alt="Logo">
                                     </a>
 
 
@@ -119,7 +121,7 @@
                                         <!-- Menu Items -->
 <!--
                                         <li><a href="#about" title="" class="scrollto">Câmera ao vivo</a></li> -->
-                                        <li><a href="#cameras" title="" class="scrollto">Câmeras</a></li>
+                                        <li><a href="#cameras" title="" class="scrollto">Câmeras ao vivo</a></li>
 
 
                                         <!-- <li class="dropdown">
@@ -158,23 +160,9 @@
                                         <li><a href="#mobile-download" title="" class="scrollto">Mobile</a></li>
 -->
                                         <!-- Login and Signup Modal on click -->
-<!--                                         <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
- --><!--                                        <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
-                                    {% load i18n %}
-                                    
-                                    {% load account_tags %}
-                                    
-                                    {% if not user.is_authenticated %}
-						            {% url "account_login" as login_url %}
-						            {% url "account_signup" as signup_url %}
-						            {% blocktrans %}<li><a class="btn btn-nav" href="{{ login_url }}" class="btn btn-default">Login</a></li><li><a class="btn btn-nav btn-white" href="{{ signup_url }}" class="btn btn-primary">Sign Up</a> </li>{% endblocktrans %}
-						            {%else%}
-						             <li><a class="btn btn-nav" href="{% url 'account_settings' %}"></i> {% user_display request.user %}</a></li>
-						            
-						            {% endif %}
-                                    
+                                        <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
+<!--                                        <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
                                     </ul>
-                                    
 
                                 </div><!-- /End Navbar-Collapse -->
                             </div><!-- /End Col -->
@@ -295,7 +283,7 @@
         <!-- =================================
              SECTION CAMERAS
         ====================================== -->
-        <section class="intro-features" id="cameras">
+        <section id="cameras">
             <div class="container">
                 <!-- Padding -->
                 <div class="wrapper-sm">
@@ -312,81 +300,80 @@
 
 
             <div class="row">
-                <div class="col-md-8">
-                  <div id="right"> <!-- col-xs-12 col-sm-3 col-md-2-->
-                          <h4>Selecione a câmera desejada.</h4>
-                  </div>
+                <div class="col-md-8" style="text-align:center;">
+                  <!-- <div id="left" style="margin-left: 120px;"> <!-- col-xs-12 col-sm-3 col-md-2-->
 
 
-                  <div id='carousel-custom' class='carousel slide' data-interval="false">
+                  <div id='carousel-custom' class='carousel slide' data-ride='carousel' data-interval="false"> <!--data-ride='carousel'-->
                       <div class='carousel-outer'>
                           <!-- Wrapper for slides -->
                           <div class='carousel-inner'>
                               <div class='item active'>
-                                <div class="carousel-caption">
-                                  <h4>Ponte Hercílio Luz</h4>
-                                </div>
-                                   <iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>
+                                  <!-- <img src='http://placehold.it/400x200&text=slide1' alt='' /> -->
+                                  <div class="carousel-caption">
+                                    <h5 style="font-size: 23px; color: #fff;">Ponte Hercílio Luz</h5>
+                                  </div>
+                                  <iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>
                               </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Kioske</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Kioske</h5>
                                 </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/39444/live/live/kiosque-beiramar-norte?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Kioske"></iframe>
-                              </div>
+                                  <iframe src="http://monitore.maaxcam.com.br/embed/39444/live/live/kiosque-beiramar-norte?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Kioske"></iframe>                              </div>
+
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Beira Mar Norte</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Beira Mar Norte</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37866/live/live/beira-mar-norte?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Beira Mar Norte"></iframe>
                               </div>
 
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Catedral</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Catedral</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37903/live/live/camera-catedral?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Catedral"></iframe>
                               </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Coqueiros</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Coqueiros</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37864/live/live/parque-de-coqueiros?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Coqueiros"></iframe>
                               </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Koxixos</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Koxixos</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/38138/live/live/beiramar-koxixos?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Koxixos"></iframe>
                               </div>
 
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Mirante da Lagoa</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Mirante da Lagoa</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37910/live/live/mirante-lagoa?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Mirante da Lagoa"></iframe>
                                 </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Ponte da Lagoa</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Ponte da Lagoa</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37594/live/live/ponte-lagoa-da-conceicao?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte da Lagoa"></iframe>
                                 </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Marina Santo Antônio de Lisboa</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Santo Antônio de Lisboa</h5>
                                 </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/38141/live/live/marina-sto-antonio-de-lisboa?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Marina Santo Antônio de Lisboa"></iframe>
+                                  <iframe src="http://monitore.maaxcam.com.br/embed/38141/live/live/marina-sto-antonio-de-lisboa?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Santo Antônio de Lisboa"></iframe>
                               </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Kite Surf</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Kite Surf</h5>
                                 </div>
                                 <iframe src="http://monitore.maaxcam.com.br/embed/37902/live/live/camera-kitesurf?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Câmera Kit Surf"></iframe>
                               </div>
                               <div class='item'>
                                 <div class="carousel-caption">
-                                  <h4>Praia da Joaquina</h4>
+                                  <h5 style="font-size: 23px; color: #fff;">Praia da Joaquina</h5>
                                 </div>
                                   <iframe src="http://monitore.maaxcam.com.br/embed/37906/live/live/joaquina?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Praia da Joaquina"></iframe>
                               </div>
@@ -394,41 +381,61 @@
                           </div>
 
                           <!-- Controls -->
-                          <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-                              <span class='fa fa-chevron-left'></span>
-                              <!-- <i class="fa fa-chevron-left"></i> -->
+                          <a class='left carousel-control' href='#carousel-custom' data-slide='prev' style="width: 10%;">
+                              <!-- <span class='glyphicon glyphicon-chevron-left'></span> -->
+                              <i class="fa fa-chevron-left" style="margin-top: 190px; margin-left: -30px;"></i>
+
                           </a>
-                          <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-                              <span class='fa fa-chevron-right'></span>
-                              <!-- <i class="fa fa-chevron-right"></i> -->
+                          <a class='right carousel-control' href='#carousel-custom' data-slide='next' style="width: 10%;">
+                              <!-- <span class='glyphicon glyphicon-chevron-right'></span> -->
+                              <i class="fa fa-chevron-right" style="margin-top: 190px; margin-left: 30px;"></i>
+
                           </a>
                       </div>
 
                       <!-- Indicators -->
-                      <ol class='carousel-indicators mCustomScrollbar'>
-                          <li data-target='#carousel-custom' data-slide-to='0' class='active' id="default-tab"><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_ponte.jpg' alt='Ponte Hercílio Luz'/></li>
-                          <li data-target='#carousel-custom' data-slide-to='1'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_kioske.jpg' alt='Kioske da Beira Mar' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='2'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_beira_mar.jpg' alt='Beira Mar Norte' /></li>
-                          <!-- <li data-target='#carousel-custom' data-slide-to='3'><img src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_ponte.jpg' alt='' /></li> -->
-                          <li data-target='#carousel-custom' data-slide-to='3'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_catedral.jpg' alt='Catedral' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='4'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_coqueiros.jpg' alt='Coqueiros' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='5'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_koxixos.jpg' alt='Koxixos' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='6'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_mirante.jpg' alt='Mirante da Lagoa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='7'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_ponte_lagoa.jpg' alt='Ponte da Lagoa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='8'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_sto_antonio.jpg' alt='Marina de Santo Antônio de Lisboa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='9'><img width='110px;' heigth='70px;' src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_kite.jpg' alt='Câmera Kite Surf' /></li>
-                          <!-- <li data-target='#carousel-custom' data-slide-to='11'><img src='http://septemweb.com.br/websites/maaxcam/assets/images/thumb_ponte.jpg' alt='' /></li> -->
+                      <div id="div_indicators" style="text-align: left; vertical-align: middle;">
+                        <!-- <button id="button_left"><i class="fa fa-chevron-left"></i></button> -->
+                        <div class="es-nav">
+                          <span id="button_left" class="es-nav-prev">Previous</span>
+                          <span id="button_right" class="es-nav-next">Next</span>
+                        </div>
+
+                      <ol id="thumb_indicators" class='carousel-indicators mCustomScrollbar'>
+                          <li data-target='#carousel-custom' data-slide-to='0' class='active' id="default-tab"><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_ponte.jpg"%}' alt='Ponte Hercílio Luz'/></li>
+                          <li data-target='#carousel-custom' data-slide-to='1'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_kioske.jpg"%}' alt='Kioske da Beira Mar' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='2'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_beira_mar.jpg"%}' alt='Beira Mar Norte' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='3'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_catedral.jpg"%}' alt='Catedral' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='4'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_coqueiros.jpg"%}' alt='Coqueiros' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='5'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_koxixos.jpg"%}' alt='Koxixos' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='6'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_mirante.jpg"%}' alt='Mirante da Lagoa' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='7'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_ponte_lagoa.jpg"%}' alt='Ponte da Lagoa' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='8'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_sto_antonio.jpg"%}' alt='Santo Antônio de Lisboa' /></li>
+                          <li data-target='#carousel-custom' data-slide-to='9'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_kite.jpg"%}' alt='Câmera Kite Surf' /></li>
+                          <!-- <li data-target='#carousel-custom' data-slide-to='11'><img src='{% static "assets/images/thumb_ponte.jpg' alt='' /></li> -->
+
 
                       </ol>
-                  </div>
 
+                      <!-- <button id="button_right"><i class="fa fa-chevron-right"></i></button> -->
+
+
+                      </div>
+
+
+
+                  </div>
 
 
                 </div>
 
                 <div class="col-md-4">
-                  <img src="http://septemweb.com.br/websites/maaxcam/assets/images/flyer_small.png" alt="" class="img-responsive">
+                
+                  <img src="{% static 'assets/images/flyer_small.png'%}" alt="" class="img-responsive">
 
+                  <div id="propaganda_slide" style="margin-top: 20px; margin-left: 30px;">
+                    <img src="{% static 'assets/images/publicidade_gelatoo.png'%}" class="img-responsive">
+                  </div>
                 </div>
            </div>
 
@@ -458,7 +465,9 @@
 
                             <!-- Video Lightbox on Click -->
 
-                            <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="btn btn-white venobox"><i class="icon arrow_triangle-right_alt"></i>Assista ao vídeo e veja como funciona</a>
+                            <!-- <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="btn btn-white venobox"><i class="icon arrow_triangle-right_alt"></i>Assista ao vídeo e veja como funciona</a> -->
+                            <a href="#charts" class="btn btn-white scrollto" style="font-size: 15px;"><i class="icon arrow_triangle-right_alt"></i>Assista ao vídeo e veja como funciona</a>
+
 
                         </div>
                     </div>
@@ -510,10 +519,10 @@
                         </div> -->
                         <div class="col-md-12" style="text-align: center;">
                           <br>
-                          <iframe width="640" height="360" src="https://www.youtube.com/embed/SZEflIVnhH8" frameborder="0" allowfullscreen></iframe>
+                          <iframe width="640" height="360" src="https://www.youtube.com/embed/SZEflIVnhH8"></iframe>
                           <br>
                             <!-- <div class="img"> -->
-                                <!-- <img src="http://septemweb.com.br/websites/maaxcam/assets/images/features/feature1_1.png" alt="" class="img-responsive"> -->
+                                <!-- <img src="assets/images/features/feature1_1.png" alt="" class="img-responsive"> -->
                                 <!-- <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="venobox video-player"><i class="icon arrow_triangle-right_alt2 wow fadeIn" data-wow-duration="2s"></i></a> -->
                             <!-- </div> -->
                             <div class="btn-box">
@@ -542,7 +551,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="text-white">Quais as vantagens de contratar o serviço Maaxcam</h2>
-                            <p class="medium text-white">Quando você assina o serviço de monitoramento de rua.</p>
+                            <p class="small text-white">Quando você assina o serviço de monitoramento de rua.</p>
                         </div>
                     </div>
                 </div>
@@ -565,7 +574,7 @@
                                             <!-- <i class="fa fa-briefcase"></i> -->
                                             <i class="fa fa-wrench"></i>
                                             <!-- <span class="glyphicon glyphicon-wrench"></span> -->
-                                            <!-- <img src="http://septemweb.com.br/websites/maaxcam/assets/images/icone_instalacao.png"/> -->
+                                            <!-- <img src="assets/images/icone_instalacao.png"/> -->
                                         </div>
                                         <h5 class="text-white">Instalação</h5>
                                     </a>
@@ -613,7 +622,7 @@
 
                         <div class="panel-container">
 
-                            <div class="tab-content" id="tab-feature-1">
+                            <div class="tab-content" id="tab-feature-1"  style="height: 350px;">
                                 <div class="container">
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Left with Buttons -->
@@ -625,15 +634,17 @@
                                                 <a href="#team" class="btn btn-grey scrollto">Meet the Team</a>
                                             </div> -->
                                         </div>
+                                        <div class="col-md-2 col-sm-6">
+                                        </div>
                                         <!-- Image-right -->
-                                        <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/cctv_small.jpg" alt="">
+                                        <div class="col-md-5 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="1s">
+                                            <img width="292px" src="{% static 'assets/images/cctv_small3.jpg'%}" alt="">
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- /End Tab-content -->
 
-                            <div class="tab-content" id="tab-feature-2">
+                            <div class="tab-content" id="tab-feature-2" style="height: 350px;">
                                 <div class="container">
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Right with Icons -->
@@ -656,33 +667,33 @@
                                             </div> -->
                                         </div>
                                         <!-- Image-Left -->
-                                        <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
-                                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/server3.jpg" class="img-device" alt="">
+                                        <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="1s">
+                                            <img width="300px" src="{% static 'assets/images/server3.jpg'%}" alt="">
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- / End Tab-content -->
 
-                            <div class="tab-content" id="tab-feature-3">
+                            <div class="tab-content" id="tab-feature-3" style="height: 350px;">
                                 <div class="container">
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Left -->
                                         <div class="col-md-5 col-sm-6">
                                             <h4>Fácil acesso em todos os dispositivos.</h4>
                                             <p>A busca é fácil e rápida. Até mesmo para quem não entende nada de tecnologia.</p>
-                                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/appstore3.png" alt="" class="img-responsive">
+                                            <img src="{% static 'assets/images/appstore3.png'%}" alt="" class="img-responsive">
 
                                         </div>
                                         <!-- Image-Right -->
                                         <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                          <img src="http://septemweb.com.br/websites/maaxcam/assets/images/showcase2.png" alt="" class="img-responsive">
+                                          <img width=611; src="{% static 'assets/images/showcase3.png'%}" alt="" class="img-responsive">
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- /End Tab-content -->
 
 
-                            <div class="tab-content" id="tab-feature-4">
+                            <div class="tab-content" id="tab-feature-4" style="height: 400px;">
                                 <div class="container">
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Left with Buttons -->
@@ -691,16 +702,18 @@
                                           <h4>Atendimento</h4>
                                           <p>A MaaxCam preza pela satisfação dos clientes e busca atendê-los prontamente.</p>
                                           <div class="tab-icon">
-                                              <div class="icon-sm">
+                                              <!-- <div class="icon-sm">
                                                   <i class="icon icon-phone"></i>
-                                              </div>
+                                              </div> -->
+                                              <i class="fa fa-phone"></i>
                                               <p class="large">Telefone</p>
                                               <p>Suporte telefônico ou WhatsApp</p>
                                           </div>
                                           <div class="tab-icon">
-                                              <div class="icon-sm">
+                                              <!-- <div class="icon-sm">
                                                   <i class="icon icon-desktop"></i>
-                                              </div>
+                                              </div> -->
+                                              <i class="fa fa-desktop"></i>
                                               <p class="large">Acesso Remoto</p>
                                               <p>Assistência de computador remoto para resolução de problemas.</p>
                                           </div>
@@ -709,7 +722,7 @@
                                         </div>
                                         <!-- Image-right -->
                                         <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/features/feature1.png" alt="">
+                                            <img src="{% static 'assets/images/features/feature1.png'%}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -734,13 +747,13 @@
                                   </div>
                                   <div class="row">
                                       <div class="col-xs-12 hidden-xs wow fadeInUp" data-wow-duration="2s">
-                                          <img src="http://septemweb.com.br/websites/maaxcam/assets/images/features/feature5.png" class="img-device" alt="">
+                                          <img src="assets/images/features/feature5.png" class="img-device" alt="">
                                       </div>
                                   </div>
                               </div>
                             </div><!-- /End Tab-content -->
 
-                            <div class="tab-content" id="tab-feature-5">
+                            <div class="tab-content" id="tab-feature-5" style="height: 350px;">
                               <div class="container">
                                   <div class="row">
                                       <!-- Feature Description 2col Text-Left with Icons-->
@@ -764,7 +777,7 @@
                                       </div>
                                       <!-- Image Right -->
                                       <div class="col-md-5 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                          <img src="http://septemweb.com.br/websites/maaxcam/assets/images/colaborativo.png" class="img-device" alt="">
+                                          <img width="425" src="{% static 'assets/images/colaborativo3.jpg'%}" class="img-responsive" alt="">
                                       </div>
                                   </div>
                               </div>
@@ -825,13 +838,15 @@
                             </div><br>
 
                             <!-- Signup Button -->
-                            <button class="btn btn-color">Assistir<i class="icon arrow_right"></i></button>
+                            <button class="btn btn-color" id="assistir">Assistir<i class="icon arrow_right"></i></button>
                         </form>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="experimente" >
+<!-- style="background-image: assets/images/bg_experimente.png;" -->
+                                   <img src="{% static 'assets/images/bg_experimente.png'%}" alt="" class="img-responsive">
+                                   <!-- <iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe> -->
 
-                                   <img src="http://septemweb.com.br/websites/maaxcam/assets/images/dashboard.png" alt="" class="img-responsive">
                         </div>
 
                     </div><!-- /End Row -->
@@ -861,52 +876,44 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
 <br>
                             <h4>Mais segurança em suas mãos! </h4>
 
-                            <!-- Video Lightbox on Click -->
-                            <!-- <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="btn btn-white venobox"><i class="icon arrow_triangle-right_alt"></i>Assista ao vídeo e veja como funciona</a> -->
-
                         </div>
                     </div>
-                    <!-- Three Main Features with Icons -->
-                    <!-- Team Box -->
+
                     <div class="col-sm-3 team-box">
                         <div class="team-img">
-                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/bebe.png" class="img-responsive" alt="">
+                            <img src="{% static 'assets/images/bebe_ip.png'%}" class="img-responsive" alt="">
                         </div>
                         <h4>Seu bebê</h4>
-                        <!-- <p class="team-bio"><span class="text-color">Lead designer</span> with experience in most things visual. He loves trying out new techniques and finding the perfect solution for any kind of requirements.</p> -->
                     </div>
-                    <!-- Team Box -->
                     <div class="col-sm-3 team-box">
                         <div class="team-img">
-                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/casa2.png" class="img-responsive" alt="">
+                            <img src="{% static 'assets/images/casa_ip.png'%}" class="img-responsive" alt="">
                         </div>
                         <h4>Sua casa</h4>
-                        <!-- <p class="team-bio"><span class="text-color">Lead designer</span> with experience in most things visual. He loves trying out new techniques and finding the perfect solution for any kind of requirements.</p> -->
                     </div>
-                    <!-- Team Box -->
                     <div class="col-sm-3 team-box">
                         <div class="team-img">
-                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/escritorio2.png" class="img-responsive" alt="">
+                            <img src="{% static 'assets/images/escritorio_ip.png'%}" class="img-responsive" alt="">
                         </div>
                         <h4>Sua empresa</h4>
-                        <!-- <p class="team-bio"><span class="text-color">Lead designer</span> with experience in most things visual. He loves trying out new techniques and finding the perfect solution for any kind of requirements.</p> -->
                     </div>
-                    <!-- Team Box -->
                     <div class="col-sm-3 team-box">
                         <div class="team-img">
-                            <img src="http://septemweb.com.br/websites/maaxcam/assets/images/ferias2.png" class="img-responsive" alt="">
+                            <img src="{% static 'assets/images/casa_ferias_ip.png'%}" class="img-responsive" alt="">
                         </div>
                         <h4>Sua casa de férias</h4>
-                        <!-- <p class="team-bio"><span class="text-color">Lead designer</span> with experience in most things visual. He loves trying out new techniques and finding the perfect solution for any kind of requirements.</p> -->
                     </div>
 
                 </div><!-- /End Row -->
-
-              </br>
-                    <div class="btn-box">
-                        <a href="#pricing" class="btn btn-color scrollto"><i class="icon arrow_carrot-2dwnn_alt"></i>Conheça o melhor plano para você!</a>
+				<div id="row">
+                  <br>
+                    <div class="btn-box" style="margin-top: 110px;">
+                        <a href="#pricing" class="btn btn-color scrollto">
+                            <i class="icon arrow_carrot-2dwnn_alt"></i>
+                            Conheça o melhor plano para você!
+                        </a>
                     </div>
-
+				 <!-- </div> --> <!-- /end Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
 
@@ -925,50 +932,85 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
         ============================== -->
         <section class="pricing light-bg" id="pricing">
             <div class="container">
-                <div class="wrapper-lg">
+                <div class="wrapper-md">
                     <div class="row">
                         <div class="col-xs-12">
-                            <h2>Comece hoje mesmo!</h2>
+                            <h2>Comece hoje mesmo</h2>
                             <p class="large">Escolha o plano mais adequado para você.</p>
                         </div>
                     </div>
 
                     <!-- Pricing Tabs-->
                     <div class="row grid-md">
-                        <div class="col-sm-4">
-                            <div class="pricing-tab">
-                                <p class="price">R$ 29<span>/mês</span></p>
-                                <h4>7 dias de gravação</h4>
-                                <ul class="pricing-features">
-                                    <li>7 dias de gravação constate na nuvem</li>
-                                    <li>Suporte e transmissão HD</li>
-                                    <li>Livre de anúncios</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-color scrollto">Contrate</a>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="pricing-tab">
-                                <div class="ribbon">
-                                    <h5 class="popular">Popular</h5>
-                                </div>
+                        <div class="col-sm-3">
+                            <div class="pricing-tab" style="border: 3px solid #39b753; background-color: rgba(57, 183, 83, 0.07);">
                                 <p class="price">R$ 49<span>/mês</span></p>
-                                <h4>30 dias de gravação</h4>
+                                <h4 style="border-bottom: 3px solid #39b753;">Monitore sua rua</h4>
                                 <ul class="pricing-features">
-                                    <li>30 dias de gravação constate na nuvem</li>
+                                    <li><i class="fa fa-movie"></i>Instalação gratuita</li>
+                                    <li>7 dias de gravação na nuvem</li>
                                     <li>Suporte e transmissão HD</li>
-                                    <li>Livre de anúncios</li>
+                                    <!-- <li>Livre de anúncios</li> -->
+                                </ul>
+                                <a href="#contact" class="btn btn-color scrollto">Contrate</a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="pricing-tab" style="border: 3px solid #39b753; background-color: rgba(57, 183, 83, 0.07);">
+                                <div class="ribbon">
+                                    <h5 class="popular" style="background-color: #39b753;">Popular</h5>
+                                </div>
+                                <p class="price">R$ 89<span>/mês</span></p>
+                                <h4 style="border-bottom: 3px solid #39b753;">Monitore sua rua</h4>
+                                <ul class="pricing-features">
+                                    <li><i class="fa fa-movie"></i>Instalação gratuita</li>
+                                    <li>30 dias de gravação na nuvem</li>
+                                    <li>Suporte e transmissão HD</li>
+                                    <!-- <li>Livre de anúncios</li> -->
+                                </ul>
+                                <!-- <a href="#contact" class="btn btn-color scrollto" onMouseOut="this.style.background-color='#39b753'" onMouseOver="this.style.background-color='#333333'" style="background-color:#39b753; border: #39b753;">Contrate</a> -->
+                                <a href="#contact" class="btn btn-color scrollto">Contrate</a>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="pricing-tab" style="border: 3px solid #ebab3e; background-color: rgba(235, 171, 62, 0.06);">
+                                <p class="price">R$ 29<span>/mês</span></p>
+                                <h4 style="border-bottom: 3px solid #ebab3e;">Monitore sua câmera IP</h4>
+                                <ul class="pricing-features">
+                                    <!-- <li><i class="fa fa-movie"></i>Instalação gratuita</li> -->
+                                    <li>30 dias de gravação na nuvem</li>
+                                    <li>Suporte e transmissão HD</li>
+                                    <li>Espectadores limitados</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-color scrollto">Contrate</a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="pricing-tab" style="border: 3px solid #ebab3e; background-color: rgba(235, 171, 62, 0.06);">
+                                <div class="ribbon">
+                                    <h5 class="popular" style="background-color: #ebab3e;">Popular</h5>
+                                </div>
+                                <p class="price">R$ 79<span>/mês</span></p>
+                                <h4 style="border-bottom: 3px solid #ebab3e;">Monitore sua câmera IP</h4>
+                                <ul class="pricing-features">
+                                    <!-- <li><i class="fa fa-movie"></i>Instalação gratuita</li> -->
+                                    <li>30 dias de gravação na nuvem</li>
+                                    <li>Suporte e transmissão HD</li>
+                                    <li>Espectadores limitados</li>
                                 </ul>
                                 <a href="#contact" class="btn btn-color scrollto">Contrate</a>
                             </div>
                         </div>
 
 
-                        <div class="col-sm-4">
+                        <!-- <div class="col-sm-3">
                             <div class="pricing-tab">
                                 <p class="price">Exclusivo</p>
-                                <!-- <h4>&nbsp;</h4> -->
                                 <br>
                                 <ul class="pricing-features">
                                     <li>Procura uma solução específica?
@@ -978,7 +1020,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                 <br>
                                 <a href="#contact" class="btn btn-color scrollto">Consulte</a>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- <div class="col-sm-4">
@@ -998,7 +1040,9 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="pricing-more">
-                                    <p><strong>Deseja saber mais?</strong> &mdash; Entramos em contato com você! <strong> <a href="mailto:maaxsegur@gmail.com.br">Contato <i class="icon arrow_carrot-right_alt2"></i></a></strong> </p>
+                                    <!-- <p><strong>Deseja saber mais?</strong> &mdash; Entramos em contato com você! <strong> <a href="mailto:maaxsegur@gmail.com.br">Contato <i class="icon arrow_carrot-right_alt2"></i></a></strong> </p> -->
+                                    <p><strong>Precisa de algo específico?</strong> &mdash; Entramos em contato com você! <strong> <a href="#contact" class="scrollto">Contato <i class="icon arrow_carrot-right_alt2"></i></a></strong> </p>
+                                    <!-- <a href="#contact" class="btn btn-color scrollto"><i class="icon arrow_carrot-2dwnn_alt"></i>Fale conosco!</a> -->
                                 </div>
                             </div>
                         </div><!-- /End Row Pricing Footer -->
@@ -1010,7 +1054,6 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
         <!-- =============================
              /END PRICING SECTION
         ============================== -->
-
 
 
 
@@ -1036,12 +1079,12 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                               <div class="col-md-6">
                                   <!-- Devices Image -->
                                   <div class="img-box">
-                                      <!-- <img src="http://septemweb.com.br/websites/maaxcam/assets/images/showcase.png" alt="" class="img-responsive"> -->
+                                      <!-- <img src="assets/images/showcase.png" alt="" class="img-responsive"> -->
                                       <!-- <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="venobox video-player"><i class="icon arrow_triangle-right_alt2 wow fadeIn" data-wow-duration="2s"></i></a> -->
                                       <div class="row">
                                           <!-- Image below -->
                                           <div class="col-xs-12 hidden-xs wow" data-wow-duration="2s" style="text-align: center;">
-                                              <img width="434" src="http://septemweb.com.br/websites/maaxcam/assets/images/divulgue.png" alt="">
+                                              <img width="434" src="{% static 'assets/images/divulgue.png'%}" alt="">
                                           </div>
                                       </div>
                                   </div>
@@ -1062,7 +1105,6 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
 
                         </div>
                     </div>
-                    <div class="row">
 
                 </div><!-- End Wrapper -->
             </div><!--/End Container -->
@@ -1135,7 +1177,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                       </div>
                       <!-- Image-right -->
                       <div class="col-md-6"> <!-- hidden-xs wow fadeInRight" data-wow-duration="1s"-->
-                          <img src="http://septemweb.com.br/websites/maaxcam/assets/images/parceria2.png" class="img-device" alt="">
+                          <img src="{% static 'assets/images/parceria1.png'%}" class="img-device" alt="">
                           <!-- <div class="btn-box" style="margin-top: -200px; margin-left: 150px;">
                               <a href="#contact" class="btn btn-color scrollto"><i class="icon arrow_carrot-2dwnn_alt"></i>Solicite um orçamento!</a>
                           </div> -->
@@ -1168,11 +1210,17 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                     </div>
                     <br>
                     <div class="row">
-                      <div class="col-sm-6 col-md-3">
-                          <h3>Publicidade</h3>
-                          <p class="mobile-text">Texto explicativo ou flyer. <span class="text-color">Teste!</span></p>
-                          <a href="#" class="btn btn-color"><i class="icon icon_cloud-download_alt"></i>Chamada para ação</a>
+                      <div class="col-sm-6 col-md-3" style="text-align: center;">
+                          <!-- <h3>Nós ligamos para você</h3> -->
+                          <img src="{% static 'assets/images/logo_escuro_pequeno.png'%}" class="img-resposive">
+                          <br><br>
+                          <p class="mobile-text">Nós ligamos para você!</p> <!-- <span class="text-color">Teste!</span> -->
 
+
+                          <h4><img src="{% static 'assets/images/whatsapp_small.png'%}" class="img-resposive">(48) 8467-5843</h4>
+
+                          <!-- <a href="#" class="btn btn-color"><i class="icon icon_cloud-download_alt"></i>Chamada para ação</a> -->
+                          <!-- <img src="assets/images/cctv.jpg" class="img-resposive"> -->
                       </div>
 
                       <div class="col-sm-6 col-md-8">
@@ -1333,11 +1381,11 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                                     <i class="icon icon-googleplus"></i>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <a href="#">
                                                     <i class="icon icon-linkedin"></i>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div><!-- /End Table-Cell -->
                                 </div><!-- /End Table-Row -->
@@ -1425,7 +1473,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                     <span class="text-logo">MaaxCam</span>
                                 </a>
                                 <!-- <p class="footer-hero"><strong>600.000</strong> users registered since January.<br> -->
-                                Monitoramento compartilhado.</p>
+                                Monitoramento compartilhado.
                                 <p class="footer-cta">Compartilhe essa ideia!
                                     <a href="#about" class="btn btn-color">Saiba mais</a>
                                 </p>
@@ -1496,14 +1544,14 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
     <!-- =========================
          SCRIPTS
     ============================== -->
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/jquery1.11.0.min.js"></script>
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/bootstrap.min.js"></script>
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/jquery.easing.1.3.min.js"></script>
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/modernizr.custom.min.js"></script>
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/plugins.min.js"></script>
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/plugins/twitter/tweetie.min.js"></script>
+    <script src="{% static 'assets/js/plugins/jquery1.11.0.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.easing.1.3.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/modernizr.custom.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/plugins.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/twitter/tweetie.min.js'%}"></script>
     <!-- Custom Script -->
-    <script src="http://septemweb.com.br/websites/maaxcam/assets/js/custom.js"></script>
+    <script src="{% static 'assets/js/custom.js'%}"></script>
 
 
 

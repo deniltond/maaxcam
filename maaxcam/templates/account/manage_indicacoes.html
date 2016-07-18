@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap %}
+
+{% block body_class %}account account-settings{% endblock %}
+
+{% block head_title %}Cliente{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-5">
+            <form method="POST" action="{% url "manage_indicacoes_view" %}">
+                <legend>Indicados</legend>
+                {% csrf_token %}
+                {{ formset|bootstrap  }}
+               
+               
+               
+               
+                <button class="btn btn-primary" type="submit">{% trans "Save" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

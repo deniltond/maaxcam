@@ -133,6 +133,8 @@ INSTALLED_APPS = [
     "account.apps.AppConfig",
     "pinax.eventlog",
     "pinax.webanalytics",
+    "table",
+    
 
     # project
     "maaxcam",

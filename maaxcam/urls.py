@@ -14,6 +14,7 @@ urlpatterns = [
     url(r"^restrito/", RestrictView.as_view(), name="home_back"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
+    url(r"^gerencial/", include("gerencial.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

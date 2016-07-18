@@ -66,6 +66,10 @@ class Assinatura(models.Model):
     cliente = models.ForeignKey(Account)
     plano = models.ForeignKey(Plano)
     obs = models.TextField(null=True, blank=True)
+    contrato = models.FileField(null=True, blank=True)
+    termo_utilizacao = models.TextField(null=True, blank=True)
+    aceite = models.BooleanField(default=False)
+
 #     nome = models.CharField(max_length=220, verbose_name=u"Plano", help_text="Nome do Plano")
     
     def get_faturas(self, request):
@@ -78,16 +82,24 @@ class Assinatura(models.Model):
 #                   (1,u'Em Aberto'),
 #                   (2,u'Paga'),
 # )
+from datetime import date
 class Fatura(models.Model):
     assinatura = models.ForeignKey(Assinatura, blank=True, null=True)
     mes = models.IntegerField(blank=True, null=True)
+    ano = models.IntegerField(blank=True, null=True)
     data_vencimento = models.DateField(blank=True, null=True)
+    valor = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=10)
 #     status = models.IntegerField(choices=FATURA_STATUS, verbose_name = u"Status da fatura", null=False, blank=False, default=1)
     status = models.BooleanField(verbose_name = "Pago")
     
     def cliente(self):
         return self.assinatura.cliente
     
+    @property
+    def is_vencido(self):
+        if date.today() > self.data_vencimento:
+            return True
+        return False    
     
     def __unicode__(self):
         return ('%s') %(self.assinatura.cliente.nome)

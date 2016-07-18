@@ -38,7 +38,7 @@ class Account(models.Model):
     nome = models.CharField(max_length=220, verbose_name=u"Nome", help_text="Nome do Cliente", blank=True, null=True)
     cpf = models.CharField(max_length=200, verbose_name=u"CPF", blank=True, null=True)
     telefone = models.CharField(max_length=200, verbose_name=u"Fone", null=True, blank=True)
-    cep=models.IntegerField(verbose_name=u"CEP", null=True, blank=True)
+    cep=models.CharField(max_length=200, verbose_name=u"CEP", null=True, blank=True)
     logradouro=models.CharField(max_length=200, verbose_name=u"Logradouro", null=True, blank=True, help_text="Nome da rua, avenida, etc.")
     complemento=models.CharField(max_length=200, verbose_name=u"Complemento", null=True, blank=True)
     bairro=models.CharField(max_length=200, verbose_name=u"Bairro", null=True, blank=True)

@@ -223,21 +223,23 @@ class ClienteModelForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ['nome', 'cpf', 'telefone', 'cep', 'logradouro', 'complemento', 'bairro', 'cidade', 'estado']
-
+        exclude = ['email',]
+#         fields = ['nome', 'cpf', 'telefone', 'cep', 'logradouro', 'complemento', 'bairro', 'cidade', 'estado']
+        
+from fields import BRCPFField, BRPhoneNumberField, BRZipCodeField, BRStateChoiceField
 class ClienteForm(forms.Form):
 
 #     class Meta:
 #         model = Account
 #         fields = ['email', 'nome', 'cpf', 'telefone', 'cep', 'logradouro', 'complemento', 'bairro', 'cidade', 'estado']
 
-    email = forms.EmailField(label=_("Email"), required=True)
+#     email = forms.EmailField(label=_("Email"), required=True)
     nome = forms.CharField(label=_("Nome"), required=True)
-    cpf = forms.CharField(label=_("CPF"), required=False)
-    telefone = forms.CharField(label=_("Telefone"), required=False)
-    cep = forms.CharField(label=_("CEP"), required=True)
-    cidade = forms.CharField(label=_("Cidade"), required=False)
-    estado = forms.CharField(label=_("Estado"), required=False)
+    cpf = BRCPFField(label=_("CPF"), required=False)
+    telefone = BRPhoneNumberField(label=_("Telefone"), required=False)
+    cep = BRZipCodeField(label=_("CEP"), required=True)
+    cidade = forms.CharField(label=_("Cidade"), required=True)
+    estado = BRStateChoiceField(label=_("Estado"), required=False)
  
 #     timezone = forms.ChoiceField(
 #         label=_("Timezone"),

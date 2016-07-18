@@ -23,11 +23,10 @@ from account.hooks import hookset
 from account.mixins import LoginRequiredMixin
 from account.models import SignupCode, EmailAddress, EmailConfirmation, Account, AccountDeletion
 from account.utils import default_redirect, get_form_data
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 
-from gerencial.models import Fatura, Assinatura
-
+from gerencial.models import Fatura, Assinatura, Plano, Indicacao, Dependente
 
 class SignupView(FormView):
 
@@ -795,6 +794,7 @@ class DeleteView(LogoutView):
     
 #============
 from django.shortcuts import render
+from tables import FaturaTable
 class RestrictView(LoginRequiredMixin, View):
 
     template_name = "account/index.html"
@@ -814,10 +814,12 @@ class RestrictView(LoginRequiredMixin, View):
     greeting = "Good Day"
 
     def get(self, request):
+        
         if request.user.is_superuser:
             return redirect('/admin')
 #         return HttpResponse(self.greeting)
 #         faturas = Fatura.objects.filter(assinatura = )
+        
         account = Account.objects.get(user = request.user)
         assinaturas = Assinatura.objects.filter(cliente = account)
 #         assinaturas = Assinatura.objects.all()
@@ -830,7 +832,28 @@ class RestrictView(LoginRequiredMixin, View):
                 self.messages["assinaturas_empty"]["text"]
             )
 
-        return render(request, self.template_name, {'assinaturas': assinaturas})
+        fatura = FaturaTable()
+
+
+        #progress bar
+        progress = 100 #valor inicial pelo cadastro
+        pendencias = []
+        if account.cpf is None:
+            progress -= 10
+            pendencias.append('CPF')
+        if account.telefone is None:
+            progress -= 10
+            pendencias.append('Telefone')
+        if not assinaturas.exists():
+            progress -=50
+            pendencias.append('Contratação de Plano')
+        for f in assinaturas:
+            if not f.aceite:
+                progress -= 20
+                str_pendencia = 'Aceite no contrato referente ao plano '+f.plano.nome
+                pendencias.append(str_pendencia)
+
+        return render(request, self.template_name, {'assinaturas': assinaturas, 'fatura':fatura, 'progresso':progress, 'pendencias':pendencias}) #
 
 #     def get(self, *args, **kwargs):
 #         if not self.request.user.is_authenticated():
@@ -847,9 +870,90 @@ class RestrictView(LoginRequiredMixin, View):
         return ctx
 
 
+from django.forms import modelformset_factory
+from django.shortcuts import render
 
+def manage_cliente(request):
+#     ClienteForm = modelformset_factory(Plano, fields=('nome',))
+    formset = ClienteForm
+    if request.method == 'POST':
+        formset = ClienteForm(request.POST)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = ClienteForm()
+    return render(request, 'account/cliente.html', {'formset': formset})
+
+
+from django.forms import ModelForm
+from django.forms import formset_factory, inlineformset_factory
+
+class DependenteModelForm(ModelForm):
+    class Meta:
+        model=Dependente
+        fields = ['nome', 'telefone']
+    
+def dependentes(request):
+    object_id = request.user.id
+    ClienteFormSet = inlineformset_factory \
+           (Account,Dependente,fields=('nome','telefone'), extra=3)
+    if object_id:
+        cliente=Account.objects.get(pk=object_id)
+    else:
+        cliente=Account()
+    if request.method == 'POST':
+        f= DependenteModelForm(request.POST, request.FILES, instance=cliente)
+        fs = ClienteFormSet(request.POST,instance=cliente)
+        if fs.is_valid() and f.is_valid():
+            f.save()
+            fs.save()
+            return HttpResponse('success')
+    else:
+        f  = DependenteModelForm(instance=cliente)
+        fs = ClienteFormSet(instance=cliente)
+#     return render('account/dependentes.html', \
+#                {'fs': fs,'f':f,'cliente':cliente})
+    return render(request, 'account/dependentes.html',  {'fs': fs,'f':f,'cliente':cliente})
+
+
+def manage_dependentes(request):
+    author_id = request.user.id
+    author = Account.objects.get(pk=author_id)
+    BookInlineFormSet = inlineformset_factory(Account, Dependente, fields=('nome','telefone'))
+    if request.method == "POST":
+        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+        if formset.is_valid():
+            formset.save()
+            # Do something. Should generally end with a redirect. For example:
+            messages.add_message(request, messages.SUCCESS, _("Dependentes atualizados com sucesso."))
+
+            return HttpResponseRedirect('/restrito')
+    else:
+        formset = BookInlineFormSet(instance=author)
+    return render(request, 'account/manage_dependentes.html', {'formset': formset})
+
+def manage_indicacoes(request):
+    author_id = request.user.id
+    author = Account.objects.get(pk=author_id)
+    BookInlineFormSet = inlineformset_factory(Account, Indicacao, fields=('nome','telefone'))
+    if request.method == "POST":
+        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+        if formset.is_valid():
+            formset.save()
+            # Do something. Should generally end with a redirect. For example:
+            messages.add_message(request, messages.SUCCESS, _("Indicacoes atualizados com sucesso."))
+            return HttpResponseRedirect('/restrito')
+    else:
+        formset = BookInlineFormSet(instance=author)
+    return render(request, 'account/manage_indicacoes.html', {'formset': formset})
 
 class ClienteModelView(UpdateView):
+    template_name = 'account/cliente.html'
+    model = Account
+    fields = ['nome']
+
+class ClienteModelViewX(UpdateView):
     template_name = 'account/cliente.html'
     form_class = ClienteModelForm
     model = Account
@@ -892,8 +996,11 @@ class ClienteView(LoginRequiredMixin, FormView):
         if self.primary_email_address:
             initial["email"] = self.primary_email_address.email
         initial["nome"] = self.request.user.account.nome
+        initial["cpf"] = self.request.user.account.cpf
+        initial["telefone"] = self.request.user.account.telefone
         initial["cep"] = self.request.user.account.cep
         initial["cidade"] = self.request.user.account.cidade
+        initial["estado"] = self.request.user.account.estado
 
 
 #         initial["timezone"] = self.request.user.account.timezone
@@ -974,7 +1081,7 @@ class ClienteView(LoginRequiredMixin, FormView):
   
     def get_success_url(self, fallback_url=None, **kwargs):
         if fallback_url is None:
-            fallback_url = settings.ACCOUNT_SETTINGS_REDIRECT_URL
+            fallback_url = '/restrito'
         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
         return default_redirect(self.request, fallback_url, **kwargs)
 

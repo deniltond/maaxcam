@@ -1,24 +1,42 @@
 {% extends "theme_bootstrap/subnav_base.html" %}
 
+
 {% load i18n %}
+{% load static %}
+
+{% block scripts %}
+  {{ block.super }}    
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
+<!--         <link rel="stylesheet" href="{{staticfiles}}/css/AdminLTE.css">
+ -->        
+{% endblock %}
 
 {% block body_class %}account{% endblock %}
 
 {% block subnav %}
 <div class="panel panel-default">
 
-   <div class="panel-heading"><strong>Assinaturas</strong></div>
+   <div class="panel-heading"><strong>Minha conta</strong></div>
     <div class="list-group">
-        <a class="list-group-item account-settings" href="{% url "home_back" %}">
+        <a class="list-group-item" href="{% url "home_back" %}">
+            Geral
+        </a>
+        <a class="list-group-item" href="{% url "planos_view" %}">
+            Planos
+        </a>
+        <a class="list-group-item" href="{% url "faturas_view" %}">
             Faturas
         </a>
         <a class="list-group-item" href="{% url "cliente_view" %}">
             Dados cadastrais
         </a>
-        <a class="list-group-item" href="{% url "home_back" %}">
+        <a class="list-group-item" href="{% url "manage_dependentes_view" %}">
             Dependentes
         </a>
-        <a class="list-group-item" href="{% url "home_back" %}">
+        <a class="list-group-item" href="{% url "manage_indicacoes_view" %}">
             Indicações
         </a>
 
@@ -27,8 +45,8 @@
     <div class="panel-heading"><strong>Acesso</strong></div>
     <div class="list-group">
     	
-        <a class="list-group-item account-settings" href="{% url "account_settings" %}">
-            Conta
+        <a class="list-group-item" href="{% url "account_settings" %}">
+            Email de acesso
         </a>
         <a class="list-group-item account-password" href="{% url "account_password" %}">
             {% trans "Change password" %}
