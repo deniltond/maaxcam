@@ -5,6 +5,7 @@ colorama==0.3.3
 django-appconf==1.0.1
 django-autocomplete-light==2.3.2
 django-bootstrap-form==3.2
+django-datatable==0.2.1
 django-localflavor==1.3
 django-mptt==0.8.0
 django-mptt-admin==0.3.1
@@ -23,7 +24,6 @@ pinax-eventlog==1.1.1
 pinax-notifications==3.0.1
 pinax-theme-bootstrap==7.8.0
 pinax-webanalytics==2.0.1
-psycopg2==2.6.1
 python-openid==2.2.5
 python-social-auth==0.2.13
 pytz==2015.7
