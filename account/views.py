@@ -26,7 +26,7 @@ from account.utils import default_redirect, get_form_data
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 
-from gerencial.models import Fatura, Assinatura, Plano, Indicacao, Dependente
+from gerencial.models import Fatura, Assinatura, Plano, Indicacao, Dependente, Prospect
 
 class SignupView(FormView):
 
@@ -1086,3 +1086,64 @@ class ClienteView(LoginRequiredMixin, FormView):
         return default_redirect(self.request, fallback_url, **kwargs)
 
 
+from django.core.mail import EmailMessage
+def contato_form(request):
+    if request.method == 'POST':
+        categoria =  request.POST['input_categoria']
+        fonte = 3 # formulario de contato
+        nome =  request.POST['input_nome']
+        email =  request.POST['input_email']
+        telefone =  request.POST['input_telefone']
+        bairro =  request.POST['input_bairro']
+        cidade =  request.POST['input_cidade']
+        msg = request.POST['input_msg']
+        if request.POST['input_vizinho']:
+            if request.POST['input_vizinho1_nome'] is not None:
+                msg += request.POST['input_vizinho1_nome'] 
+            if request.POST['input_vizinho2_nome'] is not None:
+                msg += request.POST['input_vizinho2_nome'] 
+        
+        Prospect.objects.create(nome= nome, fonte = 3, categoria = categoria, interesse = 1, email = email, telefone = telefone, bairro = bairro, cidade = cidade, mensagem = msg)
+
+#         propect_link = url('http://127.0.0.1:8000/admin/gerencial/prospect/1/change/')
+        email = EmailMessage('Contato vida Site', 'Verifique site administrativo na seção Prospect', to=['denilton@septemweb.com.br'])
+
+        email.send()
+
+
+    return HttpResponse('success')
+
+
+
+def newsletter_form(request):
+    if request.method == 'POST':
+        email =  request.POST['input_email']
+        
+        Prospect.objects.create(nome= 'Indefinido', fonte = 1, categoria = 1, interesse = 1, email = email)
+
+#         propect_link = url('http://127.0.0.1:8000/admin/gerencial/prospect/1/change/')
+        email = EmailMessage('Newsletter cadastrado', 'Verifique site administrativo na seção Prospect', to=['denilton@septemweb.com.br'])
+
+        email.send()
+
+
+    return HttpResponse('success')
+
+
+
+def experimente_form(request):
+    if request.method == 'POST':
+        nome =  request.POST['experimente-nome']
+        telefone =  request.POST['experimente-telefone']
+        email =  request.POST['experimente-email']
+        cidade =  request.POST['experimente-cidade']
+        
+        Prospect.objects.create(nome= nome, fonte = 2, categoria = 1, interesse = 1, email = email, telefone = telefone, cidade = cidade)
+
+#         propect_link = url('http://127.0.0.1:8000/admin/gerencial/prospect/1/change/')
+        email = EmailMessage('Email cadastrado em Experimente', 'Verifique site administrativo na seção Prospect', to=['denilton@septemweb.com.br'])
+
+        email.send()
+
+
+    return HttpResponse('success')

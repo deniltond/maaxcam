@@ -107,6 +107,7 @@ class Fatura(models.Model):
 PROSPECT_FONTE = (
                   (1,u'Newsletter'),
                   (2,u'Experimente'),
+                  (2,u'Contato'),
 )
 
 PROSPECT_CATEGORIA = (
@@ -115,17 +116,24 @@ PROSPECT_CATEGORIA = (
 )
 
 PROSPECT_INTERESSE = (
-                  (1,u'Compartilhado'),
-                  (2,u'Camera IP'),
+                  (1,u'25%'),
+                  (2,u'50%'),
+                  (2,u'75%'),
+                  (2,u'100%'),
 )
 
 class Prospect(models.Model):
     #ID eh CEP+NUMERO
     nome = models.CharField(max_length=220, verbose_name=u"Plano", help_text="Nome do Plano")
     fonte = models.IntegerField(choices=PROSPECT_FONTE, verbose_name = u"Fonte do Prospect", null=False, blank=False, default=1)
-    categoria = models.IntegerField(choices=PROSPECT_INTERESSE, verbose_name = u"Categoria do Prospect", null=False, blank=False, default=1)
+    categoria = models.IntegerField(choices=PROSPECT_CATEGORIA, verbose_name = u"Categoria do Prospect", null=False, blank=False, default=1)
     interesse = models.IntegerField(choices=PROSPECT_INTERESSE, verbose_name = u"Interesse do Prospect", null=False, blank=False, default=1)
-
+    email = models.EmailField(null=True, blank=True)
+    telefone = models.CharField(max_length=220,null=True, blank=True)
+    bairro = models.CharField(max_length=220,null=True, blank=True)
+    cidade = models.CharField(max_length=220,null=True, blank=True)
+    mensagem = models.TextField(null=True, blank=True)
+    
         
     def __unicode__(self):
         return ('%s') %(self.nome)

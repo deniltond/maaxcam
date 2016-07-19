@@ -815,7 +815,7 @@
                           </p>
 
                         <!-- Signup Form -->
-                        <form id="signup-divider" role="form">
+                        <form id="signup-divider" role="form" id="experimente_form" action="/experimente_form" method="post">
                             <!-- Notification -->
                             <p class="signup-success"><i class="icon icon_check_alt2"></i> <strong>Parabéns! Acesso concedido.</strong></p>
                             <p class="signup-failed"><i class="icon icon_close_alt2"></i><strong> Por favor verifique seus dados!</strong></p>
@@ -1224,56 +1224,57 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                       </div>
 
                       <div class="col-sm-6 col-md-8">
-                        <form id="contact" class="form-horizontal" role="form">
+                        <form id="contact" class="form-horizontal" role="form" action="/contato_form/" method="post">
+                        {% csrf_token %} 
                            <div class="form-group">
                              <label for="select" class="col-sm-2 control-label">Interesse</label>
 
                               <div class="col-sm-8">
                                   <!-- <input type="selectbox" class="form-control" id="input" placeholder="Insira seu nome completo"> -->
-                                  <select name="select" id="select" class="form-control">
-                                   <option value="value1" selected>Monitore sua rua</option>
-                                   <option value="value2">Monitore sua camera ip</option>
-                                   <option value="value3">Divulgue</option>
-                                   <option value="value4">Parceiros</option>
+                                  <select name="input_categoria" id="input_categoria" class="form-control">
+                                   <option value="1" selected>Monitore sua rua</option>
+                                   <option value="2">Monitore sua camera ip</option>
+                                   <option value="3">Divulgue</option>
+                                   <option value="4">Parceiros</option>
                                  </select>
                               </div>
                            </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Nome</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira seu nome completo">
+                                    <input type="text" class="form-control" id="input_nome" name="input_nome" placeholder="Insira seu nome completo">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">E-mail</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira seu email">
+                                    <input type="text" class="form-control" id="input_email" name="input_email" placeholder="Insira seu email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Telefone</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira seu telefone">
+                                    <input type="text" class="form-control" id="input_telefone" name="input_telefone" placeholder="Insira seu telefone">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Bairro</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira seu bairro">
+                                    <input type="text" class="form-control" id="input_bairro" name="input_bairro" placeholder="Insira seu bairro">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Cidade</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira sua cidade">
+                                    <input type="text" class="form-control" id="input_cidade" name="input_cidade" placeholder="Insira sua cidade">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Mensagem</label>
                                 <div class="col-sm-8">
-                                    <!-- <input type="textarea" class="form-control" id="input" placeholder="Insira seu nome completo"> -->
-                                    <textarea name="comment" class="form-control" form="contato" placeholder="Deixe sua mensagem..."></textarea>
-
+                                    <input type="textarea" class="form-control"  id="input_msg" name="input_msg" placeholder="Deixe sua mensagem..."> 
+<!--                                     <textarea class="form-control" id="input_msg" name="input_msg" form="contact" placeholder="Deixe sua mensagem..."></textarea>
+ -->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1282,7 +1283,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                   <div class="checkbox">
                                       <label>
                                         <span class="col-sm-12 control-label" style="padding-top:0px;">Tenho alguns vizinhos interessados</span>
-                                        <input type="checkbox" class="checkbox style-2 " checked="checked">
+                                        <input type="checkbox" class="checkbox style-2 " id="input_vizinho" name="input_vizinho" checked="checked">
                                       </label>
                                     </div>
                                     <!-- <input type="checkbox" class="form-control" id="input" placeholder="Tenho alguns vizinhos interessados"> -->
@@ -1301,25 +1302,25 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Vizinhos</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira o nome">
+                                    <input type="text" class="form-control"  id="input_vizinho1_nome" name="input_vizinho1_nome" placeholder="Insira o nome">
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="email" class="form-control" id="input" placeholder="Insira o email">
+                                    <input type="email" class="form-control"  id="input_vizinho1_email" name="input_vizinho1_email" placeholder="Insira o email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Vizinhos</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="input" placeholder="Insira o nome">
+                                    <input type="text" class="form-control"  id="input_vizinho2_nome" name="input_vizinho2_nome"  placeholder="Insira o nome">
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="email" class="form-control" id="input" placeholder="Insira o email">
+                                    <input type="email" class="form-control" id="input_vizinho2_email" name="input_vizinho2_email" placeholder="Insira o email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label"></label>
                                 <span class="input-group">
-                                    <button class="btn btn-color">Enviar</button>
+                                    <button class="btn btn-color" type="submit">Enviar</button>
                                 </span>
                             </div>
                         </form>
@@ -1396,7 +1397,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                             <!-- =========================
                                 MAILCHIMP SUBSCRIPTION FORM
                             ============================== -->
-                            <form class="mailchimp-subscribe" role="form">
+                            <form class="mailchimp-subscribe" role="form" id="newsletter_form" action="/newsletter_form" method="post">
                                 <div class="table">
                                     <div class="table-row">
                                         <div class="table-cell getnewsletter">
@@ -1405,10 +1406,10 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                         <div class="table-cell">
                                             <div class="input-group text-white">
                                                 <!-- Input Form -->
-                                                <input type="email" id="subscriber-email" name="email" placeholder="Seu endereço de e-mail" class="form-control">
+                                                <input type="email" id="input_email" name="input_email" placeholder="Seu endereço de e-mail" class="form-control">
                                                 <!-- Submit Button -->
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-white">Assine</button>
+                                                    <button class="btn btn-white" type="submit">Assine</button>
                                                 </span>
                                             </div><!-- /End Input Group -->
                                         </div><!-- /End Table-Cell -->
@@ -1486,7 +1487,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                     <i class="icon icon_mail"></i>
                                 </div>
                                 <div class="contact-content">
-                                    <a href="mailto:contato@maaxcam.com.br">contato@maaxcam.com.br</a>
+                                    <a href="#contact">contato@maaxcam.com.br</a>
                                 </div>
                             </div>
                             <div class="contact-item">

@@ -271,3 +271,17 @@ class ClienteForm(forms.Form):
 # #         if not qs.exists() or not settings.ACCOUNT_EMAIL_UNIQUE:
 # #             return value
 #         raise forms.ValidationError(_("Erro de validação na cidade."))
+
+
+
+# 
+# from django import forms
+# 
+# class ContatoForm(forms.Form):
+#     name = forms.CharField()
+#     message = forms.CharField(widget=forms.Textarea)
+# 
+#     def send_email(self):
+#         # send email using the self.cleaned_data dictionary
+#         pass
+

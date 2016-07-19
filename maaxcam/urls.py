@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from django.contrib import admin
 
-from account.views import RestrictView
+from account.views import RestrictView, contato_form, experimente_form, newsletter_form
 
 
 urlpatterns = [
@@ -15,6 +15,10 @@ urlpatterns = [
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
     url(r"^gerencial/", include("gerencial.urls")),
+    url(r"^contato_form/", contato_form, name="contato_form"),
+    url(r"^newsletter_form/", newsletter_form, name="newsletter_form"),
+    url(r"^experimente_form/", experimente_form, name="experimente_form"),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

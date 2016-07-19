@@ -4,6 +4,7 @@ import os
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR = PACKAGE_ROOT
+# APPEND_SLASH=False
 
 DEBUG = True
 
@@ -175,13 +176,13 @@ FIXTURE_DIRS = [
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'denilton.d@gmail.com'
 EMAIL_HOST_PASSWORD = 'deni113355'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 ACCOUNT_OPEN_SIGNUP = True
