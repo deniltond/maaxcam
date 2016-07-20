@@ -10,10 +10,23 @@
 {% block body %}
     <div class="row">
         <div class="col-md-5">
-            <form method="POST" action="{% url "manage_dependentes_view" %}">
                 <legend>Dependentes</legend>
+
+            <form method="POST" action="{% url "manage_dependentes_view" %}">
                 {% csrf_token %}
-                {{ formset |bootstrap }}
+
+                {{ formset.management_form }}
+				    {% for form in formset %}
+				    <div class="form-group row">
+				    {{ form.id }} 
+						 
+				        {{ form.nome }}
+				        {{ form.telefone }}
+				            {% if formset.can_delete %}
+				                {{ form.DELETE }}
+				            {% endif %}
+				    </div>
+				    {% endfor %}
                
                 <button class="btn btn-primary" type="submit">{% trans "Save" %}</button>
             </form>

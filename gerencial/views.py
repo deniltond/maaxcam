@@ -48,7 +48,7 @@ class FaturasView(LoginRequiredMixin, View):
 from django import forms
 
 class AceiteForm(forms.Form):
-    id = forms.TextInput()
+    id = forms.HiddenInput()
     aceite = forms.BooleanField()
     
 #     class Meta:
@@ -73,12 +73,8 @@ def atualiza_aceita(request):
     if request.method == 'POST':
         form = AceiteForm(request.POST)
 #         print(form)
-        assinatura_id = form.cleaned_data.get("id_assinatura")
-        print(assinatura_id)
-        aceite_id = form.cleaned_data.get("id_aceite")
-        print(aceite_id)
-        if aceite_id:
-            assinatura = Assinatura.object.get(pk = assinatura_id)
+        if form.cleaned_data.get("aceite"):
+            assinatura = assinaturas[0]
             assinatura.update(aceita=True)
             messages.add_message(
             request,
@@ -103,6 +99,10 @@ def atualiza_aceita(request):
     else:
         form = AceiteForm() #{'id': a.id,'cliente': a.cliente,'plano': a.plano, 'aceite': a.aceite}
     return render(request, "account/planos.html", {'assinaturas': assinaturas, 'form': form}) 
+
+
+
+
 
 
 # class PlanosView(FormView):

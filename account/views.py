@@ -1087,21 +1087,27 @@ class ClienteView(LoginRequiredMixin, FormView):
 
 
 from django.core.mail import EmailMessage
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def contato_form(request):
+    print 'contato_form_server'
     if request.method == 'POST':
-        categoria =  request.POST['input_categoria']
+        print 'contato_form_server_POST'
+        categoria =  request.POST.get('categoria', False)#request.POST['input_categoria'] if request.POST['input_categoria'] is not None else None
         fonte = 3 # formulario de contato
-        nome =  request.POST['input_nome']
-        email =  request.POST['input_email']
-        telefone =  request.POST['input_telefone']
-        bairro =  request.POST['input_bairro']
-        cidade =  request.POST['input_cidade']
-        msg = request.POST['input_msg']
-        if request.POST['input_vizinho']:
-            if request.POST['input_vizinho1_nome'] is not None:
-                msg += request.POST['input_vizinho1_nome'] 
-            if request.POST['input_vizinho2_nome'] is not None:
-                msg += request.POST['input_vizinho2_nome'] 
+        nome =  request.POST.get('nome', "Não informado")#request.POST['input_nome']
+        print nome
+        email =  request.POST.get('email', "Não informado")#request.POST['email']
+        telefone =  request.POST.get('telefone', "Não informado")#request.POST['input_telefone']
+        bairro =  request.POST.get('bairro', "Não informado") #request.POST['input_bairro']
+        cidade =  request.POST.get('cidade', "Não informado") #request.POST['input_cidade']
+        msg = request.POST.get('msg', "Não informado")# request.POST['input_msg']
+#         if request.POST['vizinho']:
+#             if request.POST['input_vizinho1_nome'] is not None:
+#                 msg += request.POST['input_vizinho1_nome'] 
+#             if request.POST['input_vizinho2_nome'] is not None:
+#                 msg += request.POST['input_vizinho2_nome'] 
         
         Prospect.objects.create(nome= nome, fonte = 3, categoria = categoria, interesse = 1, email = email, telefone = telefone, bairro = bairro, cidade = cidade, mensagem = msg)
 
@@ -1114,7 +1120,7 @@ def contato_form(request):
     return HttpResponse('success')
 
 
-
+@csrf_exempt
 def newsletter_form(request):
     if request.method == 'POST':
         email =  request.POST['input_email']
@@ -1130,20 +1136,25 @@ def newsletter_form(request):
     return HttpResponse('success')
 
 
-
+@csrf_exempt
 def experimente_form(request):
     if request.method == 'POST':
-        nome =  request.POST['experimente-nome']
-        telefone =  request.POST['experimente-telefone']
-        email =  request.POST['experimente-email']
-        cidade =  request.POST['experimente-cidade']
+        print "post"
+        nome =  request.POST.get('nome', "Não informado")#request.POST['experimente-nome']
+        telefone =  request.POST.get('telefone', "Não informado")#request.POST['experimente-telefone']
+        email = request.POST.get('email', "Não informado") #request.POST['experimente-email']
+        cidade = request.POST.get('cidade', "Não informado") #request.POST['experimente-cidade']
         
-        Prospect.objects.create(nome= nome, fonte = 2, categoria = 1, interesse = 1, email = email, telefone = telefone, cidade = cidade)
-
+        p = Prospect.objects.create(nome= nome, fonte = 2, categoria = 1, interesse = 1, email = email, telefone = telefone, cidade = cidade)
+        print(p)
 #         propect_link = url('http://127.0.0.1:8000/admin/gerencial/prospect/1/change/')
         email = EmailMessage('Email cadastrado em Experimente', 'Verifique site administrativo na seção Prospect', to=['denilton@septemweb.com.br'])
 
         email.send()
-
-
-    return HttpResponse('success')
+    else:
+        print "get"
+        
+#     print 'OK'
+    return HttpResponse('')
+#     resp = {'success': True}
+#     return HttpResponse(json.dumps(resp), content_type='application/json')

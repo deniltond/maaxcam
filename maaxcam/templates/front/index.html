@@ -14,7 +14,7 @@
 	{% load staticfiles %}
     
     <!-- FAVICON  -->
-    <link rel="icon" href="assets/images/favicon/maaxcam_favicon.png">
+    <link rel="icon" href="{% static 'assets/images/favicon/maaxcam_favicon.png'%}">
 
     <!-- =========================
        STYLESHEETS
@@ -39,7 +39,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
 
     <!-- CAROUSEL -->
-    <link rel="stylesheet" href="{% static 'assets/css/carousel.css'%}">
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/carousel.css'%}"> -->
+    <link rel="stylesheet" href="{% static 'assets/css/slider_style.css'%}">
 
     <!-- COLORE STYLESHEET -->
     <!-- Change here the Main Color of the Site: Choose your favorite predefined color from assets/css/colors.css -->
@@ -160,8 +161,9 @@
                                         <li><a href="#mobile-download" title="" class="scrollto">Mobile</a></li>
 -->
                                         <!-- Login and Signup Modal on click -->
-                                        <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
-<!--                                        <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
+                                        <li><a class="btn btn-nav" href="/restrito">Login</a></li>
+<!--                                         <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
+ --><!--                                        <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
                                     </ul>
 
                                 </div><!-- /End Navbar-Collapse -->
@@ -303,128 +305,59 @@
                 <div class="col-md-8" style="text-align:center;">
                   <!-- <div id="left" style="margin-left: 120px;"> <!-- col-xs-12 col-sm-3 col-md-2-->
 
+	            <h5 id="currentSlide_title" style="margin-top: -25px;">Ponte Hercílio Luz</h5>
+	            <div id="currentSlide" class="well"><iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe></div>
+	            <div class="well">
+	                <div id="myCarousel" class="carousel slide">
 
-                  <div id='carousel-custom' class='carousel slide' data-ride='carousel' data-interval="false"> <!--data-ride='carousel'-->
-                      <div class='carousel-outer'>
-                          <!-- Wrapper for slides -->
-                          <div class='carousel-inner'>
-                              <div class='item active'>
-                                  <!-- <img src='http://placehold.it/400x200&text=slide1' alt='' /> -->
-                                  <div class="carousel-caption">
-                                    <h5 style="font-size: 23px; color: #fff;">Ponte Hercílio Luz</h5>
-                                  </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>
-                              </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Kioske</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/39444/live/live/kiosque-beiramar-norte?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Kioske"></iframe>                              </div>
+	                <ol class="carousel-indicators">
+	                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	                    <li data-target="#myCarousel" data-slide-to="1"></li>
+	                    <li data-target="#myCarousel" data-slide-to="2"></li>
+	                    <li data-target="#myCarousel" data-slide-to="3"></li>
+	                </ol>
 
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Beira Mar Norte</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37866/live/live/beira-mar-norte?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Beira Mar Norte"></iframe>
-                              </div>
+	                <!-- Carousel items -->
+	                <div class="carousel-inner">
 
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Catedral</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37903/live/live/camera-catedral?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Catedral"></iframe>
-                              </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Coqueiros</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37864/live/live/parque-de-coqueiros?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Coqueiros"></iframe>
-                              </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Koxixos</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/38138/live/live/beiramar-koxixos?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Koxixos"></iframe>
-                              </div>
+	                <div class="item active">
+	                	<div class="row-fluid">
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide1"><img src="{% static 'assets/images/thumb_ponte.jpg'%}" title="Ponte Hercílio Luz"  style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide2"><img src="{% static 'assets/images/thumb_kioske.jpg'%}" title="Kioske" style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide3"><img src="{% static 'assets/images/thumb_beira_mar.jpg'%}" title="Beira-Mar" style="max-width:170px;" /></a></div>
+	                	</div><!--/row-fluid-->
+	                </div><!--/item-->
 
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Mirante da Lagoa</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37910/live/live/mirante-lagoa?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Mirante da Lagoa"></iframe>
-                                </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Ponte da Lagoa</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37594/live/live/ponte-lagoa-da-conceicao?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte da Lagoa"></iframe>
-                                </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Santo Antônio de Lisboa</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/38141/live/live/marina-sto-antonio-de-lisboa?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Santo Antônio de Lisboa"></iframe>
-                              </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Kite Surf</h5>
-                                </div>
-                                <iframe src="http://monitore.maaxcam.com.br/embed/37902/live/live/camera-kitesurf?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Câmera Kit Surf"></iframe>
-                              </div>
-                              <div class='item'>
-                                <div class="carousel-caption">
-                                  <h5 style="font-size: 23px; color: #fff;">Praia da Joaquina</h5>
-                                </div>
-                                  <iframe src="http://monitore.maaxcam.com.br/embed/37906/live/live/joaquina?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Praia da Joaquina"></iframe>
-                              </div>
+	                <div class="item">
+	                	<div class="row-fluid">
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide4"><img src="{% static 'assets/images/thumb_catedral.jpg'%}" title="Catedral"  style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide5"><img src="{% static 'assets/images/thumb_coqueiros.jpg'%}" title="Coqueiros" style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide6"><img src="{% static 'assets/images/thumb_koxixos.jpg'%}" title="Koxixos" style="max-width:170px;" /></a></div>
+	                	</div><!--/row-fluid-->
+	                </div><!--/item-->
 
-                          </div>
+	                <div class="item">
+	                	<div class="row-fluid">
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide7"><img src="{% static 'assets/images/thumb_mirante.jpg'%}" title="Mirante da Lagoa"  style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide8"><img src="{% static 'assets/images/thumb_ponte_lagoa.jpg'%}" title="Ponte da Lagoa" style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide9"><img src="{% static 'assets/images/thumb_sto_antonio.jpg'%}" title="Marina Sto Antônio de Lisboa" style="max-width:170px;" /></a></div>
+	                	</div><!--/row-fluid-->
+	                </div><!--/item-->
+	                
+	                <div class="item">
+	                	<div class="row-fluid">
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide10"><img src="{% static 'assets/images/thumb_kite.jpg'%}" title="Câmera Kite-Surf"  style="max-width:170px;" /></a></div>
+	                	  <div class="span3"><a href="#x" class="thumbnail2" id="slide11"><img src="{% static 'assets/images/thumb_kite.jpg'%}" title="Praia da Joaquina" style="max-width:170px;" /></a></div>
+	                	</div><!--/row-fluid-->
+	                </div><!--/item-->
+	                </div><!--/carousel-inner-->
 
-                          <!-- Controls -->
-                          <a class='left carousel-control' href='#carousel-custom' data-slide='prev' style="width: 10%;">
-                              <!-- <span class='glyphicon glyphicon-chevron-left'></span> -->
-                              <i class="fa fa-chevron-left" style="margin-top: 190px; margin-left: -30px;"></i>
+	                <a class="left carousel-control2" href="#myCarousel" data-slide="prev">‹</a>
+	                <a class="right carousel-control2" href="#myCarousel" data-slide="next">›</a>
+	                </div><!--/myCarousel-->
 
-                          </a>
-                          <a class='right carousel-control' href='#carousel-custom' data-slide='next' style="width: 10%;">
-                              <!-- <span class='glyphicon glyphicon-chevron-right'></span> -->
-                              <i class="fa fa-chevron-right" style="margin-top: 190px; margin-left: 30px;"></i>
+	            </div><!--/well-->
 
-                          </a>
-                      </div>
-
-                      <!-- Indicators -->
-                      <div id="div_indicators" style="text-align: left; vertical-align: middle;">
-                        <!-- <button id="button_left"><i class="fa fa-chevron-left"></i></button> -->
-                        <div class="es-nav">
-                          <span id="button_left" class="es-nav-prev">Previous</span>
-                          <span id="button_right" class="es-nav-next">Next</span>
-                        </div>
-
-                      <ol id="thumb_indicators" class='carousel-indicators mCustomScrollbar'>
-                          <li data-target='#carousel-custom' data-slide-to='0' class='active' id="default-tab"><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_ponte.jpg"%}' alt='Ponte Hercílio Luz'/></li>
-                          <li data-target='#carousel-custom' data-slide-to='1'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_kioske.jpg"%}' alt='Kioske da Beira Mar' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='2'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_beira_mar.jpg"%}' alt='Beira Mar Norte' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='3'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_catedral.jpg"%}' alt='Catedral' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='4'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_coqueiros.jpg"%}' alt='Coqueiros' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='5'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_koxixos.jpg"%}' alt='Koxixos' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='6'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_mirante.jpg"%}' alt='Mirante da Lagoa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='7'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_ponte_lagoa.jpg"%}' alt='Ponte da Lagoa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='8'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_sto_antonio.jpg"%}' alt='Santo Antônio de Lisboa' /></li>
-                          <li data-target='#carousel-custom' data-slide-to='9'><img width='110px;' heigth='70px;' src='{% static "assets/images/thumb_kite.jpg"%}' alt='Câmera Kite Surf' /></li>
-                          <!-- <li data-target='#carousel-custom' data-slide-to='11'><img src='{% static "assets/images/thumb_ponte.jpg' alt='' /></li> -->
-
-
-                      </ol>
-
-                      <!-- <button id="button_right"><i class="fa fa-chevron-right"></i></button> -->
-
-
-                      </div>
-
-
-
-                  </div>
 
 
                 </div>
@@ -434,7 +367,7 @@
                   <img src="{% static 'assets/images/flyer_small.png'%}" alt="" class="img-responsive">
 
                   <div id="propaganda_slide" style="margin-top: 20px; margin-left: 30px;">
-                    <img src="{% static 'assets/images/publicidade_gelatoo.png'%}" class="img-responsive">
+                    <img src="{% static 'assets/images/publicidade_ponte.jpg'%}" class="img-responsive">
                   </div>
                 </div>
            </div>
@@ -444,6 +377,7 @@
         <!-- =============================
              /END INTRO FEATURES
         ============================== -->
+
 
 
         <!-- =================================
@@ -815,7 +749,8 @@
                           </p>
 
                         <!-- Signup Form -->
-                        <form id="signup-divider" role="form" id="experimente_form" action="/experimente_form" method="post">
+                        <form role="form" id="experimente_form" action="/experimente_form/" method="post">
+                        {% csrf_token %} 
                             <!-- Notification -->
                             <p class="signup-success"><i class="icon icon_check_alt2"></i> <strong>Parabéns! Acesso concedido.</strong></p>
                             <p class="signup-failed"><i class="icon icon_close_alt2"></i><strong> Por favor verifique seus dados!</strong></p>
@@ -826,7 +761,7 @@
                             </div><br>
                             <!-- Input fields -->
                             <div class="form-group">
-                                <input type="text" name="experimente-telefone" id="experimente-telefone" class="form-control input-lg" placeholder="Telefone" required>
+                                <input type="text" name="experimente-telefone" id="experimente-telefone" class="form-control input-lg maskFone" placeholder="Telefone" required>
                             </div><br>
                             <!-- Input fields -->
                             <div class="form-group">
@@ -838,7 +773,7 @@
                             </div><br>
 
                             <!-- Signup Button -->
-                            <button class="btn btn-color" id="assistir">Assistir<i class="icon arrow_right"></i></button>
+                            <button class="btn btn-color" id="assistir" type="submit" >Assistir<i class="icon arrow_right"></i></button>
                         </form>
                         </div>
 
@@ -1224,8 +1159,10 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                       </div>
 
                       <div class="col-sm-6 col-md-8">
-                        <form id="contact" class="form-horizontal" role="form" action="/contato_form/" method="post">
+                        <form id="contact_form" class="form-horizontal" role="form" action="/contato_form/" method="post">
                         {% csrf_token %} 
+                        
+                        
                            <div class="form-group">
                              <label for="select" class="col-sm-2 control-label">Interesse</label>
 
@@ -1254,7 +1191,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                             <div class="form-group">
                                 <label for="inputType" class="col-sm-2 control-label">Telefone</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="input_telefone" name="input_telefone" placeholder="Insira seu telefone">
+                                    <input type="text" class="form-control maskFone" id="input_telefone" name="input_telefone" placeholder="Insira seu telefone">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1321,9 +1258,17 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                 <label for="inputType" class="col-sm-2 control-label"></label>
                                 <span class="input-group">
                                     <button class="btn btn-color" type="submit">Enviar</button>
+                                    
                                 </span>
+                                <p class="sm-success" style="text-align:center; margin-top: -40px;"><i class="icon icon_check_alt2"></i> <strong>Obrigado por nos contatar!</strong></p>
+                        			<p class="sm-failed" style="text-align:center;margin-top: -40px;"><i class="icon icon_close_alt2"></i><strong> Por favor verifique seus dados!</strong></p>
+                        
                             </div>
                         </form>
+                        
+                        
+                        
+                        
                       </div>
 
                        <!-- <div class="col-sm-12 col-md-4 right-features">
@@ -1474,8 +1419,8 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                     <span class="text-logo">MaaxCam</span>
                                 </a>
                                 <!-- <p class="footer-hero"><strong>600.000</strong> users registered since January.<br> -->
-                                Monitoramento compartilhado.
-                                <p class="footer-cta">Compartilhe essa ideia!
+<!--                                 Monitoramento compartilhado.
+ -->                                <p class="footer-cta">Compartilhe essa ideia!
                                     <a href="#about" class="btn btn-color">Saiba mais</a>
                                 </p>
                         </div>
@@ -1528,7 +1473,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
                                         <a href="#contact" class="scrollto">Contato</a>
                                     </li>
                                     <li>
-                                        <a href="#">Área do cliente</a>
+                                        <a href="/restrito">Área do cliente</a>
                                     </li>
                                 </ul>
                                 <p class="footer-copy">&copy; 2016 - MaaxCam. Desenvolvido por <a href="http://septemweb.com.br">SEPTEM.</a></p>
@@ -1546,6 +1491,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
          SCRIPTS
     ============================== -->
     <script src="{% static 'assets/js/plugins/jquery1.11.0.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.mask.js'%}"></script>
     <script src="{% static 'assets/js/plugins/bootstrap.min.js'%}"></script>
     <script src="{% static 'assets/js/plugins/jquery.easing.1.3.min.js'%}"></script>
     <script src="{% static 'assets/js/plugins/modernizr.custom.min.js'%}"></script>
@@ -1553,6 +1499,7 @@ Conectamos sua câmera ip em nossa plataforma e você realiza o seu monitorament
     <script src="{% static 'assets/js/plugins/twitter/tweetie.min.js'%}"></script>
     <!-- Custom Script -->
     <script src="{% static 'assets/js/custom.js'%}"></script>
+    <script src="{% static 'assets/js/slider_script.js'%}"></script>
 
 
 

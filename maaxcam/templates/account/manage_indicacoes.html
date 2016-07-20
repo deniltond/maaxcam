@@ -10,10 +10,22 @@
 {% block body %}
     <div class="row">
         <div class="col-md-5">
-            <form method="POST" action="{% url "manage_indicacoes_view" %}">
-                <legend>Indicados</legend>
+        <legend>Indicados</legend>
+            <form method="POST" class="form-horizontal" role="form" action="{% url "manage_indicacoes_view" %}">
+                
                 {% csrf_token %}
-                {{ formset|bootstrap  }}
+                {{ formset.management_form }}
+				    {% for form in formset %}
+				    <div class="form-group row">
+				    {{ form.id }} 
+						 
+				        {{ form.nome }}
+				        {{ form.telefone }}
+				            {% if formset.can_delete %}
+				                {{ form.DELETE }}
+				            {% endif %}
+				    </div>
+				    {% endfor %}
                
                
                

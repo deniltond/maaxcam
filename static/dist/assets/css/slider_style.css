@@ -1,0 +1,85 @@
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carousel {
+    margin-bottom: -10px;
+	padding: 0 40px 30px 40px;
+}
+/* Reposition the controls slightly */
+.carousel-control2 {
+    position: absolute;
+    top: 40%;
+    left: -12px;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    font-size: 30px;
+    /* font-weight: 100; */
+    line-height: 30px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    opacity: 0.5;
+    background: rgb(34, 34, 34);
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-radius: 23px;
+}
+
+
+.carousel-control2.left {
+	left: 8px;
+}
+
+.carousel-control2.right {
+	left: 635px;
+}
+
+.carousel-inner{
+	margin-left: 15px;
+}
+
+/* Changes the position of the indicators */
+.carousel-indicators {
+	right: 50%;
+	top: auto;
+	bottom: 0px;
+	margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.carousel-indicators li {
+	background: #c0c0c0;
+}
+.carousel-indicators .active {
+background: #333333;
+}
+
+#currentSlide{
+  height: 400px; 
+  margin-left: 50px;
+}
+
+.well{
+	margin-left: 50px;
+	width: 685px;
+	padding: 0px;
+}
+
+.thumbnail2 {
+    display: block;
+    /*padding: 4px;*/
+    margin: 5px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    float:left;
+    max-width: 200px;
+
+}

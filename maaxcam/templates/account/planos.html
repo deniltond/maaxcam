@@ -26,18 +26,21 @@
                                     
                                     <h5 class="box-title">Seu contrato é número {{ a.id }}</h5>
                                     
-                                    Termo de uso: {{ a.termo_utilizacao }}<br>
+                                    Termo de uso: {{ a.termo_utilizacao}}<br>
                                     Contrato: 
                                     {%if a.contrato %}
                                     <a href={{ a.contrato.url }} >Ver</a><br>
                                     {%else%}
                                     Sem contrato anexo.<br>
                                     {%endif%}
-                                    Aceite:  {{a.aceite}}
+                                    Aceite:
+                                    
+                                      {{a.aceite}}
                                     
 									<br><br>
+									<legend>Aceite </legend>
 								    <form method="POST" id="{{a.id}}" action="{% url 'planos_view' %}">
-						                <legend>Aceite </legend>
+
 						                {% csrf_token %}
 						                {{ form|bootstrap }}
 						                

@@ -80,10 +80,10 @@ $(document).ready(function(){
         $("#thumb_indicators").scrollLeft(500);
     });
 
-    $("#assistir").click(function(){
-        // $("#thumb_indicators").scrollLeft(500);
-        $('#experimente').html('<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="585px" height="390px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>');
-    });
+//    $("#assistir").click(function(){
+//        // $("#thumb_indicators").scrollLeft(500);
+//        $('#experimente').html('<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="585px" height="390px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>');
+//    });
 
 
 
@@ -119,67 +119,67 @@ $(document).ready(function(){
 
 
 //Caption - carousel
-
-$('.carousel').carousel();
-var caption = $('div.item:nth-child(1) .carousel-caption');
-$('#right h3').html(caption.html());
-
-str = trim(caption.text());
-str1 = trim('Ponte Hercílio Luz');
-// alert(str);
-// alert(str1);
-// alert(str.localeCompare(str1));
-if (str.localeCompare(str1) == 0){
-  $('#propaganda_slide').html("<img src='assets/images/publicidade_gelatoo.png'>");
-}
-else{
-  $('#propaganda_slide').html("<img src='assets/images/publicidade_anuncie.png'>");
-}
-// caption.css('display','none');
-$(".carousel").on('slide.bs.carousel', function(evt) {
-   var caption = $('div.item:nth-child(' + ($(evt.relatedTarget).index()+1) + ') .carousel-caption');
-   $('#right h3').html(caption.html());
-   $('#propaganda_slide').html(caption.html());
-
-
-
-  //  // This variable contains all kinds of data and methods related to the carousel
-  //    var carouselData = $(this).data('bs.carousel');
-  //    // EDIT: Doesn't work in Boostrap >= 3.2
-  //    //var currentIndex = carouselData.getActiveIndex();
-    //  var currentIndex = carouselData.getItemIndex(carouselData.$element.find('.item.active'));
-  //    var total = carouselData.$items.length;
-  //    alert(currentIndex);
-   //
-  //    // Create the text we want to display.
-  //    // We increment the index because humans don't count like machines
-  //    var text = (currentIndex + 1) + " of " + total;
-   //
-  //    // You have to create a HTML element <div id="carousel-index"></div>
-  //    // under your carousel to make this work
-  //    $('#carousel-index').text(text);
-
-  //  alert(caption.text());
-
-   str = trim(caption.text());
-   str1 = trim('Ponte Hercílio Luz');
-  //  alert(str);
-  //  alert(str1);
-  //  alert(str.localeCompare(str1));
-   if (str.localeCompare(str1) == 0){
-     $('#propaganda_slide').html("<img src='assets/images/publicidade_gelatoo.png'>");
-   }
-   else{
-     $('#propaganda_slide').html("<img src='assets/images/publicidade_anuncie.png'>");
-   }
-
-  //  if (caption.text()=='Ponte Hercílio Luz'){
-  //    $('#propaganda_slide').html("<img src='assets/images/publicidade_gelatoo.png'>");
-  //  }else{
-  //    $('#propaganda_slide').html("<img src='assets/images/publicidade_anuncie.png'>");
-  //  }
-  //  caption.css('display','none');
-});
+//
+//$('.carousel').carousel();
+//var caption = $('div.item:nth-child(1) .carousel-caption');
+//$('#right h3').html(caption.html());
+//
+//str = trim(caption.text());
+//str1 = trim('Ponte Hercílio Luz');
+//// alert(str);
+//// alert(str1);
+//// alert(str.localeCompare(str1));
+//if (str.localeCompare(str1) == 0){
+//  $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_gelatoo.png'>");
+//}
+//else{
+//  $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");
+//}
+//// caption.css('display','none');
+//$(".carousel").on('slide.bs.carousel', function(evt) {
+//   var caption = $('div.item:nth-child(' + ($(evt.relatedTarget).index()+1) + ') .carousel-caption');
+//   $('#right h3').html(caption.html());
+//   $('#propaganda_slide').html(caption.html());
+//
+//
+//
+//  //  // This variable contains all kinds of data and methods related to the carousel
+//  //    var carouselData = $(this).data('bs.carousel');
+//  //    // EDIT: Doesn't work in Boostrap >= 3.2
+//  //    //var currentIndex = carouselData.getActiveIndex();
+//    //  var currentIndex = carouselData.getItemIndex(carouselData.$element.find('.item.active'));
+//  //    var total = carouselData.$items.length;
+//  //    alert(currentIndex);
+//   //
+//  //    // Create the text we want to display.
+//  //    // We increment the index because humans don't count like machines
+//  //    var text = (currentIndex + 1) + " of " + total;
+//   //
+//  //    // You have to create a HTML element <div id="carousel-index"></div>
+//  //    // under your carousel to make this work
+//  //    $('#carousel-index').text(text);
+//
+//  //  alert(caption.text());
+//
+//   str = trim(caption.text());
+//   str1 = trim('Ponte Hercílio Luz');
+//  //  alert(str);
+//  //  alert(str1);
+//  //  alert(str.localeCompare(str1));
+//   if (str.localeCompare(str1) == 0){
+//     $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_gelatoo.png'>");
+//   }
+//   else{
+//     $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");
+//   }
+//
+//  //  if (caption.text()=='Ponte Hercílio Luz'){
+//  //    $('#propaganda_slide').html("<img src='assets/images/publicidade_gelatoo.png'>");
+//  //  }else{
+//  //    $('#propaganda_slide').html("<img src='assets/images/publicidade_anuncie.png'>");
+//  //  }
+//  //  caption.css('display','none');
+//});
 
 $("textarea").keyup(function(e) {
     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
@@ -299,6 +299,19 @@ $(window).scroll(function(){
 /* ==================================================== */
 /* ==================================================== */
 
+
+$('document').ready(function() {
+//    $("#name").mask("99/99/9999");
+    $(".maskFone").mask("(99) 9999-9999");
+//    $(".maskFone").blur(function(event) {
+//        if($(this).val().length == 15){
+//          $('.maskFone').mask('(99) 99999-999?9');
+//        } else {
+//          $('.maskFone').mask('(99) 9999-9999?9');
+//        }
+//    });
+});
+
 $(document).ready(function() {
 
 
@@ -316,6 +329,8 @@ if (Modernizr.touch && ($('.header').attr('data-stellar-background-ratio') !== u
         horizontalScrolling: false
     });
 }
+
+
 
 
 /* =================================
@@ -353,6 +368,7 @@ $('.tabs.features').easytabs({
     animationSpeed: 300,
     updateHash: false
 });
+
 
 
 /* ==========================================
@@ -535,27 +551,84 @@ $("#signup-modal").submit(function(e) {
     return false;
 });
 
+
+
+
+
 /* ================================================
    SIGNUP-DIVIDER VALIDATION. WITHOUT CONFIRM PSW.
 =================================================== */
-$("#signup-divider").submit(function(e) {
+$("#experimente_form").submit(function(e) {
     e.preventDefault();
     var data = {
-        email: $("#signup-email").val(),
-        password: $("#signup-password").val()
+    	nome: $("#experimente-nome").val(),
+    	telefone: $("#experimente-telefone").val(),
+        email: $("#experimente-email").val(),
+        cidade: $("#experimente-cidade").val(),
     };
-
-    if ( isValidEmail(data['email']) && (data['password'].length > 1)) {
-        $.ajax({
-            type: "POST",
-            url: "assets/php/subscribe.php",
-            data: data,
-            success: function() {
-                $('.signup-success').fadeIn(1000);
-                $('.signup-failed').fadeOut(0);
-            }
-        });
+    
+    if (data['nome'].length < 1){
+    	$('.signup-failed').html('Informe seu nome.');
+    	$('.signup-failed').fadeIn(1000);
+    	return false;
+    }
+    if (data['telefone'].length < 1){
+    	$('.signup-failed').html('Informe seu telefone.');
+    	$('.signup-failed').fadeIn(1000);
+    	return false;
+    }
+    if (data['email'].length < 1){
+    	$('.signup-failed').html('Informe seu email.');
+    	$('.signup-failed').fadeIn(1000);
+    	return false;
+    }
+    if (data['cidade'].length < 1){
+    	$('.signup-failed').html('Informe sua cidade.');
+    	$('.signup-failed').fadeIn(1000);
+    	return false;
+    }
+    
+//    && (data['password'].length > 1
+    if ( isValidEmail(data['email'])) {
+		$('#experimente').html('<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="585px" height="390px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>');
+//		$('#experimente').html('Teste OK');
+//		alert('ok');
+//        $.ajax({
+//            type: "POST",
+//            url: "/experimente_form/",
+//            data: data,
+//            success: function() {
+//            	console.log('sucess')
+//                $('.signup-success').fadeIn(1000);
+//                $('.signup-failed').fadeOut(0);
+//            }
+//        });
+        
+//        var jqxhr = $.post( "/experimente_form/" )
+//        .done(function() { $('.signup-success').fadeIn(1000); })
+//        .fail(function() { $('.signup-failed').fadeIn(1000); })
+//        .always(function() { $('.signup-failed').html("<i class='icon icon_check_alt2'></i> <strong>Parabéns! Acesso concedido.</strong>"); });
+	    if ( isValidEmail(data['email'])) {
+	        $.ajax({
+	            type: "POST",
+	            url: "/experimente_form/",
+	            data: data,
+	            success: function() {
+//	            	alert('sucess')
+	                $('.signup-success').fadeIn(1000);
+	                $('.signup-failed').fadeOut(500);
+	            }
+	        });
+//	        $('.sm-success').fadeIn(1000);
+//	        $('.sm-failed').fadeOut(500);
+	    } else {
+	        $('.sm-failed').fadeIn(1000);
+	        $('.sm-success').fadeOut(500);
+	    }
+		
+        
     } else {
+    	$('.signup-failed').html('Verifique seu email.');
         $('.signup-failed').fadeIn(1000);
         $('.signup-success').fadeOut(500);
     }
@@ -566,26 +639,34 @@ $("#signup-divider").submit(function(e) {
 /* ===================================================
    FAST-REGISTRATION VALIDATION. WITHOUT CONFIRM PSW.
 ====================================================== */
-$("#fast-reg").submit(function(e) {
+$("#contact_form").submit(function(e) {
     e.preventDefault();
     var data = {
-        email: $("#fast-email").val(),
-        password: $("#fast-password").val()
+        nome: $("#input_nome").val(),
+        email: $("#input_email").val(),
+        telefone: $("#input_telefone").val(),
+        bairro: $("#input_bairro").val(),
+        cidade: $("#input_cidade").val(),
+        msg: $("#input_msg").val(),
+        
     };
 
-    if ( isValidEmail(data['email']) && (data['password'].length > 1)) {
+    if ( isValidEmail(data['email'])) {
         $.ajax({
             type: "POST",
-            url: "assets/php/subscribe.php",
+            url: "/contato_form/",
             data: data,
             success: function() {
-                $('.fast-success').fadeIn(1000);
-                $('.fast-failed').fadeOut(500);
+//            	alert('sucess')
+                $('.sm-success').fadeIn(1000);
+                $('.sm-failed').fadeOut(500);
             }
         });
+//        $('.sm-success').fadeIn(1000);
+//        $('.sm-failed').fadeOut(500);
     } else {
-        $('.fast-failed').fadeIn(1000);
-        $('.fast-success').fadeOut(500);
+        $('.sm-failed').fadeIn(1000);
+        $('.sm-success').fadeOut(500);
     }
 
     return false;
