@@ -651,7 +651,7 @@ $("#contact_form").submit(function(e) {
         
     };
 
-    if ( isValidEmail(data['email'])) {
+    if ( isValidEmail(data['email']) && (data['nome'].length > 1)) {
         $.ajax({
             type: "POST",
             url: "/contato_form/",

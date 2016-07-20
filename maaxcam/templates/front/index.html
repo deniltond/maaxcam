@@ -783,11 +783,12 @@
                         </form>
                         </div>
 
-                        <div class="col-md-6" id="experimente" >
+                        <div class="col-md-6">
+                          <div id="experimente" class="embed-responsive embed-responsive-16by9">
 <!-- style="background-image: assets/images/bg_experimente.png;" -->
                                    <img src="{% static 'assets/images/bg_experimente.png'%}" alt="" class="img-responsive">
                                    <!-- <iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=false&sound=true" width="585px" height="300px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe> -->
-
+							</div>
                         </div>
 
                     </div><!-- /End Row -->
@@ -1162,8 +1163,8 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                     <div class="row">
                         <div class="col-md-12">
                             <h2>Contato</h2>
-                            <p class="large" style="margin-left: 100px;">Preencha o formulário e retornaremos o mais breve possível. </p>
-                        </div>
+<!--                             <p class="large" style="margin-left: 100px;">Preencha o formulário e retornaremos o mais breve possível. </p>
+ -->                        </div>
                     </div>
                     <br>
                     <div class="row">
@@ -1181,6 +1182,8 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                       </div>
 
                       <div class="col-sm-6 col-md-8">
+                        <p class="large" style="margin-left: -60px;">Preencha o formulário e retornaremos o mais breve possível. </p>
+                      
                         <form id="contact_form" class="form-horizontal" role="form" action="/contato_form/" method="post">
                         {% csrf_token %} 
                         
