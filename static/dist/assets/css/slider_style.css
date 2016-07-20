@@ -1,4 +1,10 @@
 /* Removes the default 20px margin and creates some padding space for the indicators and controls */
+
+#cameras_hall{
+	position: absolute;
+	right: 50px;
+}
+
 .carousel {
     margin-bottom: -10px;
 	padding: 0 40px 30px 40px;
@@ -7,7 +13,7 @@
 .carousel-control2 {
     position: absolute;
     top: 40%;
-    left: -12px;
+    /* left: -12px; */
     width: 40px;
     height: 40px;
     margin-top: -20px;
@@ -31,11 +37,11 @@
 
 
 .carousel-control2.left {
-	left: 8px;
+	left: 4px;
 }
 
 .carousel-control2.right {
-	left: 635px;
+	/* left: 635px; */
 }
 
 .carousel-inner{
@@ -58,13 +64,13 @@ background: #333333;
 }
 
 #currentSlide{
-  height: 400px; 
-  margin-left: 50px;
+  /* height: 400px;  */
+  /* margin-left: 50px; */
 }
 
 .well{
-	margin-left: 50px;
-	width: 685px;
+	margin-left: 50px; 
+	/* width: 685px; */
 	padding: 0px;
 }
 

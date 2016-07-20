@@ -124,7 +124,7 @@ PROSPECT_INTERESSE = (
 
 class Prospect(models.Model):
     #ID eh CEP+NUMERO
-    nome = models.CharField(max_length=220, verbose_name=u"Plano", help_text="Nome do Plano")
+    nome = models.CharField(max_length=220, verbose_name=u"Nome", help_text="Nome do Prospect")
     fonte = models.IntegerField(choices=PROSPECT_FONTE, verbose_name = u"Fonte do Prospect", null=False, blank=False, default=1)
     categoria = models.IntegerField(choices=PROSPECT_CATEGORIA, verbose_name = u"Categoria do Prospect", null=False, blank=False, default=1)
     interesse = models.IntegerField(choices=PROSPECT_INTERESSE, verbose_name = u"Interesse do Prospect", null=False, blank=False, default=1)

@@ -57,6 +57,19 @@ section{
     overflow: hidden;
 }
 
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
 /*------------------------------------------------------------------*/
 /*	 Internet Explorer 10 in Windows 8 and Windows Phone 8 Bug fix
 /*-----------------------------------------------------------------*/
@@ -466,6 +479,9 @@ p {
     display: inline-block;
     padding: 14px 28px 13px 28px;
     border:2px solid;
+    
+    white-space: normal !important;
+	word-wrap: break-word;
 }
 
 .btn:focus {
