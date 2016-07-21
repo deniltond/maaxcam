@@ -82,7 +82,10 @@ $(document).ready(function(){
 	    lazyLoad : true,
 	    navigation : true,
 //	    navigationText : false
-	    navigationText : ["Anterior","Próximo"]
+	    navigationText : ["Anterior","Próximo"],
+	    responsive: true,
+	    responsiveRefreshRate: 200,
+		responsiveBaseWidth: window
 	  }); 
 	
     // $('#button_left').click(function(){

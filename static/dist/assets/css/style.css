@@ -475,7 +475,7 @@ p {
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     margin-bottom: 5px;
     border-radius: 5px;
     display: inline-block;
@@ -484,6 +484,7 @@ p {
     
     white-space: normal !important;
 	word-wrap: break-word;
+	/* min-width: 340px; */
 }
 
 .btn:focus {
@@ -1270,6 +1271,7 @@ opacity: 0.5;
     margin-right: 0;
     font-size: 15px;
     padding: 16px 28px 15px;
+    margin-left: 10px;
 }
 
 .fast-reg .btn{
@@ -1706,11 +1708,19 @@ opacity: 0.5;
 #owl-demo .item{
   margin: 3px;
 }
+.owl-item {
+  width: initial;
+}
+
 #owl-demo .item img{
   display: block;
   width: 100%;
   height: auto;
 }
+
+/* #owl-demo .owl-wrapper-outer .owl-wrapper .owl-item{
+	width: 100px;	
+} */
 
 .owl-buttons{
 	margin-top: 0px;
@@ -1719,6 +1729,8 @@ opacity: 0.5;
 .owl-carousel .owl-wrapper-outer{
 	height: 100px;
 }
+
+
 
 .es-nav span{
 	position:absolute;
