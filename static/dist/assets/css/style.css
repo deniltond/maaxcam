@@ -998,7 +998,7 @@ background-color: rgba(95, 129, 150, 0.81);
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-background-color: rgba(35, 109, 158, 0.86);
+/* background-color: rgba(35, 109, 158, 0.86); */
 opacity: 0.5;
 }
 
@@ -1434,12 +1434,16 @@ opacity: 0.5;
 }
 
 .pricing-tab p.price{
-    font-size: 46px;
+    font-size: 44px;
     letter-spacing: -2px;
     margin-bottom: 30px;
     font-weight: 300;
 }
 
+.pricing-tab p.price_cents {
+    font-size: 28px;
+    font-weight: 200;
+}
 .pricing-tab p.price span {
     font-size: 22px;
 }
