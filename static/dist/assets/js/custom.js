@@ -68,6 +68,23 @@ $(function() {
 
 //scroll indicators
 $(document).ready(function(){
+	
+//	$(".dropdown-menu a").click(function() {
+//	    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+//	});
+
+//	$('.in,.open').removeClass('in open');
+	
+	$('li[class="dropdown open"]').removeClass('open');
+	
+	$("#owl-demo").owlCarousel({
+	    items : 4,
+	    lazyLoad : true,
+	    navigation : true,
+//	    navigationText : false
+	    navigationText : ["Anterior","Próximo"]
+	  }); 
+	
     // $('#button_left').click(function(){
     //     e.preventDefault();
     //     $("#thumb_indicators").scrollLeft(1);

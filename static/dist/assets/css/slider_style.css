@@ -69,7 +69,8 @@ background: #333333;
 }
 
 .well{
-	margin-left: 20px; 
+	margin-left: 10px; 
+	margin-right: 10px; 
 	/* width: 685px; */
 	padding: 0px;
 }

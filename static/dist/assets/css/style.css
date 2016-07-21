@@ -568,7 +568,7 @@ p {
 /*   Header Background Parallax Settings
 /*------------------------------------------*/
 .header{
-    background: url("../images/bg_familia_rua.png") no-repeat center top fixed;
+    background: url("../images/bg_familia_rua.jpg") no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size:cover;
     background-size: cover;
@@ -874,7 +874,7 @@ p {
 .intro-features .overlay {
     height: 600px;
     margin-top: -350px;
-    background-image: url(../images/bg_floripa2.png);
+    background-image: url(../images/bg_floripa2.jpg);
 }
 
 .intro-features .icon-lg{
@@ -968,8 +968,40 @@ p {
 
 .tab-features .panel-container{
     background-color: #ffffff;
-    /*height: 400px;*/
+    /* height: 400px; */
 }
+
+.dropdown-menu li a{
+color: #fff;
+font-family: 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+font-style: normal;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+font-size: 11px;
+line-height: 15px;
+color: #ffffff;
+}
+
+.dropdown .dropdown-menu {
+background-color: rgba(95, 129, 181, 0.81);
+}
+
+.dropdown-menu li a:hover, .dropdown-menu li a:focus {
+background-color: #3e3e3e;
+color: #2980b9;
+}
+
+.dropdown:hover .dropdown-menu {
+display: block;
+background-color: rgba(95, 129, 150, 0.81);
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+background-color: rgba(35, 109, 158, 0.86);
+opacity: 0.5;
+}
+
 
 .tab-features .etabs{
     display: table;
@@ -1665,6 +1697,22 @@ p {
     top: 200px;
 }
 
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.owl-buttons{
+	margin-top: 0px;
+}
+
+.owl-carousel .owl-wrapper-outer{
+	height: 100px;
+}
 
 .es-nav span{
 	position:absolute;
@@ -1759,7 +1807,7 @@ p {
 }
 
 .footer-nav{
-    margin-top: 100px;
+    margin-top: 30px;
     font-family: 'Raleway','Open Sans',Helvetica,Arial,sans-serif;
     font-style: normal;
     font-weight: 700;
