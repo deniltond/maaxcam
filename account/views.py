@@ -795,6 +795,9 @@ class DeleteView(LogoutView):
 #============
 from django.shortcuts import render
 from tables import FaturaTable
+# from django.views.decorators.cache import cache_control
+
+# @cache_control(max_age=604800)
 class RestrictView(LoginRequiredMixin, View):
 
     template_name = "account/index.html"
