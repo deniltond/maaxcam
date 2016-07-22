@@ -15,7 +15,7 @@ $(document).ready(function() {
 //    	alert('Kioske');
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/39444/live/live/kiosque-beiramar-norte?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Kioske"></iframe>');
         $('#currentSlide_title').html('Kioske');
-        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");
+        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.jpg'>");
 
     });
 
@@ -49,13 +49,13 @@ $(document).ready(function() {
     $( "#slide7" ).click(function() {
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/37910/live/live/mirante-lagoa?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Mirante da Lagoa"></iframe>');
         $('#currentSlide_title').html('Mirante da Lagoa');
-        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");
+        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.jpg'>");
 
     });
     $( "#slide8" ).click(function() {
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/37594/live/live/ponte-lagoa-da-conceicao?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Ponte da Lagoa"></iframe>');
         $('#currentSlide_title').html('Ponte da Lagoa');
-        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");
+        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.jpg'>");
 
     });
     $( "#slide9" ).click(function() {
