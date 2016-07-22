@@ -49,6 +49,19 @@
     <!-- FONT AWESOME -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
+
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/css/style.css" />
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/css/settings.css" />
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/js/slick/slick.css" />
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/js/slick/slick-theme.css" />
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/css/ie/ie.css" />
+    <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+    <link  rel="stylesheet" href="http://www.janelas.tv.br/css/janelas.css" />
+    <link  rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700" />
+
+
+
     <!--[if lt IE 9]>
             <script src="assets/js/plugins/html5shiv.min.js"></script>
             <script src="assets/js/plugins/respond.min.js"></script>
@@ -122,23 +135,23 @@
                                         <!-- Menu Items -->
 <!--
                                         <li><a href="#about" title="" class="scrollto">Câmera ao vivo</a></li> -->
-                                        <li><a href="#cameras" title="" class="scrollto">Câmeras ao vivo</a></li>
-
-                                        <!-- <li class="dropdown">
-
-
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                          Câmeras ao Vivo <b class="caret"></b>
+<!--                                         <li><a href="#cameras" title="" class="scrollto">Câmeras ao vivo</a></li>
+ -->
+                                        <!-- <li class="dropdown"> -->
+                                        
+                                        <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                          Câmeras ao vivo<b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                          <li><a href="#">Beira-Mar</a></li>
-                                          <li><a href="#">Trapiche</a></li>
-                                          <li><a href="#">Koxixo</a></li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Joaquina</a></li>
-                                             <li><a href="#">Praia Brava</a></li>
-                                        </ul>
-                                      </li> -->
+                                          <li><a href="#cameras" class="scrollto" onclick="$('#slide1').click();">Ponte Hercílio Luz</a></li> 
+                                          <li><a href="#cameras" class="scrollto" onclick="$('#slide2').click();">Kioske</a></li> 
+                                          <li><a href="#cameras" class="scrollto" onclick="$('#slide3').click();">Beira Mar Norte</a></li> 
+                                          </ul>
+                                      </li>
+
+
+
                                     <li class="dropdown">
                                         <a href="href="javscript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                           Serviços <b class="caret"></b>
@@ -290,26 +303,26 @@
                 <div class="wrapper-sm">
                     <div class="row">
                         <!-- Section Header Title -->
-                        <div class="col-lg-12">
+                       <!--  <div class="col-lg-12">
                             <h2 style="text-align: center;">Câmeras ao vivo!</h2>
-                            <!-- <p class="large">Principais pontos da cidade.</p> -->
+                            <p class="large">Principais pontos da cidade.</p>
 
-                        </div>
+                        </div> -->
                     </div>
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
 
 
             <div class="row row-centered">
-                <div class="col-md-8" style="text-align:center;" >
+                <div class="col-md-8" style="text-align:center; max-width:800px;" >
                 <h5 id="currentSlide_title" style="font-size: 20px; margin-top: -25px; margin-left: 12px;">Ponte Hercílio Luz</h5>
-				<div class="well">
+				<div class="well" style="padding: 0;">
 				<div id="currentSlide" class="embed-responsive embed-responsive-16by9">
 				<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="782px" height="440px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>
 				</div>
 				</div>
 
-<div id="owl-demo" class="owl-carousel">
+<!-- <div id="owl-demo" class="owl-carousel">
   <div class="item"><a href="#x" class="thumbnail2" id="slide1"><img class="lazyOwl" data-src='{% static "assets/images/thumb_ponte.jpg"%}' title="Ponte Hercílio Luz"></a></div>
   <div class="item"><a href="#x" class="thumbnail2" id="slide2"><img class="lazyOwl" data-src="{% static 'assets/images/thumb_kioske.jpg'%}"title="Kioske"></a></div>
   <div class="item"><a href="#x" class="thumbnail2" id="slide3"><img class="lazyOwl" data-src="{% static 'assets/images/thumb_beira_mar.jpg'%}" title="Beira-Mar"></a></div>
@@ -321,6 +334,88 @@
   <div class="item"><a href="#x" class="thumbnail2" id="slide9"><img class="lazyOwl" data-src="{% static 'assets/images/thumb_sto_antonio.jpg'%}" title="Marina Sto Antônio de Lisboa"  alt="Lazy Owl Image"></a></div>
   <div class="item"><a href="#x" class="thumbnail2" id="slide10"><img class="lazyOwl" data-src="{% static 'assets/images/thumb_kite.jpg'%}" title="Câmera Kite-Surf"  alt="Lazy Owl Image"></a></div>
   <div class="item"><a href="#x" class="thumbnail2" id="slide11"><img class="lazyOwl" data-src="{% static 'assets/images/thumb_joaquina.jpg'%}" title="Praia da Joaquina"  alt="Lazy Owl Image"></a></div>
+</div> -->
+
+<div class="cameras-wrapper"><div class="cameras">
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/santos/ponta-da-praia"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/santos/ponta-da-praia">Ponta da Praia <br/><small>Santos (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/santos/canal-3"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/santos/canal-3">Canal 3 <br/><small>Santos (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/sao-sebastiao/praia-de-camburi"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/sao-sebastiao/praia-de-camburi">Camburi <br/><small>São Sebastião (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sc/garopaba/silveira"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sc/garopaba/silveira">Silveira <br/><small>Garopaba (SC)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sc/imbituba/rosa"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sc/imbituba/rosa">Praia do Rosa <br/><small>Imbituba (SC)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/ba/salvador/praia-do-flamengo"><img src='{% static "assets/images/thumb_ponte.jpg"%}' class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/ba/salvador/praia-do-flamengo">Flamengo <br/><small>Salvador (BA)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/sao-vicente/praia-do-itarare-surf"><img src="/img/camera-ao-vivo/sp/sao-vicente/praia-do-itarare-surf-mini@2x.jpg" class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/sao-vicente/praia-do-itarare-surf">Surf no Itararé <br/><small>São Vicente (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/sao-vicente/praia-do-itarare"><img src="/img/camera-ao-vivo/sp/sao-vicente/praia-do-itarare-mini@2x.jpg" class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/sao-vicente/praia-do-itarare">Praia do Itararé <br/><small>São Vicente (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/santos/praia-do-embare"><img src="/img/camera-ao-vivo/sp/santos/praia-do-embare-mini@2x.jpg" class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/santos/praia-do-embare">Embaré <br/><small>Santos (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/sao-vicente/ilha-porchat"><img src="/img/camera-ao-vivo/sp/sao-vicente/ilha-porchat-mini@2x.jpg" class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/sao-vicente/ilha-porchat">Ilha Porchat <br/><small>São Vicente (SP)</small></a></h2>
+	</div>
+	</div>
+    
+    <div>
+    <div class="camera">
+		<a href="/camera-ao-vivo/sp/santos/saida-canal-do-porto"><img src="/img/camera-ao-vivo/sp/santos/saida-canal-do-porto-mini@2x.jpg" class="camera" width="127" height="79" alt=""/></a>
+		<h2><a href="/camera-ao-vivo/sp/santos/saida-canal-do-porto">Canal do porto <br/><small>Santos (SP)</small></a></h2>
+	</div>
+	</div>
+    
+</div>
 </div>
 
 
@@ -1501,6 +1596,17 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
     <!-- Custom Script -->
     <script src="{% static 'assets/js/custom.js'%}"></script>
     <script src="{% static 'assets/js/slider_script.js'%}"></script>
+
+
+
+
+    <script defer="defer"  src="http://www.janelas.tv.br/js/slick/slick.min.js">
+    </script><script defer="defer"  src="http://www.janelas.tv.br/js/jquery.touchSwipe.min.js"></script>
+    <script defer="defer"  src="http://www.janelas.tv.br/js/revolution/jquery.themepunch.plugins.min.js"></script>
+    <script defer="defer"  src="http://www.janelas.tv.br/js/revolution/jquery.themepunch.revolution.min.js"></script>
+    <script defer="defer"  src="http://www.janelas.tv.br/js/janelas.js"></script>
+
+
 
 
 
