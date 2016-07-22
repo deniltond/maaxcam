@@ -146,7 +146,7 @@
  -->
                                         <!-- <li class="dropdown"> -->
                                         
-                                        <li class="dropdown">
+<!--                                         <li class="dropdown">
                                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                           Câmeras ao vivo<b class="caret"></b>
                                         </a>
@@ -155,7 +155,44 @@
                                           <li><a href="#cameras" class="scrollto" onclick="$('#slide2').click();">Kioske</a></li> 
                                           <li><a href="#cameras" class="scrollto" onclick="$('#slide3').click();">Beira Mar Norte</a></li>
                                           </ul>
-                                      </li>
+                                      </li> -->
+                                      
+                                   
+                                   
+              <li class="dropdown">
+	            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Three Column <b class="caret"></b></a> -->
+	            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                          Câmeras ao vivo<b class="caret"></b>
+                                        </a>
+	            <ul class="dropdown-menu multi-column columns-2">
+		            <div class="row">
+			            <div class="col-sm-6">
+				            <ul class="multi-column-dropdown">
+								<li><a href="#cameras" class="scrollto" onclick="$('#slide1').click();">Ponte Hercílio Luz</a></li> 
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide2').click();">Kioske</a></li> 
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide3').click();">Beira Mar Norte</a></li>
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide4').click();">Catedral</a></li>
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide6').click();">Koxixos</a></li>
+                                          
+<!-- 					            <li class="divider"></li>
+ -->
+ 					            <li><a href="#cameras" class="scrollto" onclick="$('#slide5').click();">Coqueiros</a></li> 
+
+				            </ul>
+			            </div>
+			            <div class="col-sm-6">
+				            <ul class="multi-column-dropdown">
+								<li><a href="#cameras" class="scrollto" onclick="$('#slide7').click();">Mirante da Lagoa</a></li> 
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide8').click();">Ponte da Lagoa</a></li> 
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide9').click();">Marina Sto Antônio de Lisboa</a></li>
+                                <li><a href="#cameras" class="scrollto" onclick="$('#slide10').click();">Kite-Surf</a></li>
+					            <li><a href="#cameras" class="scrollto" onclick="$('#slide11').click();">Joaquina</a></li> 
+
+				            </ul>
+			            </div>
+
+	            </ul>
+	        </li>
 
 
 
@@ -319,10 +356,12 @@
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
 
+<div class="container">
+<div class="row">
 
-            <div class="row row-centered">
-                <div class="col-md-8" style="text-align:center; max-width:800px;" >
-                
+    <div class="col-lg-8 col-xs-offset-0 gauche">
+    
+    
                 <h5 id="currentSlide_title" style="font-size: 20px; margin-top: -25px; margin-left: 12px;">Ponte Hercílio Luz</h5>
 				<div class="well" style="padding: 0;">
 				
@@ -495,23 +534,23 @@
     
 </div>
 </div>
+    
+    
+    
+    </div>
 
-
-
-
-
-
-                </div>
-
-                <div class="col-md-4 col-centered">
-                
-                  <img src="{% static 'assets/images/flyer_small.jpg'%}" alt="" class="img-responsive">
+    <div class="col-lg-4 corps">
+                      <img src="{% static 'assets/images/flyer_small.jpg'%}" alt="" class="img-responsive">
 
                   <div id="propaganda_slide" style="margin-top: 20px; margin-left: 50px;">
                     <img src="{% static 'assets/images/publicidade_ponte.jpg'%}" class="img-responsive">
                   </div>
-                </div>
-           </div>
+    </div>
+
+</div>
+</div>
+
+
 
 
         </section>
