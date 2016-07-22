@@ -90,3 +90,30 @@ background: #333333;
     max-width: 200px;
 
 }
+
+.slick-slide:hover .blackover{
+    width: 94%; 
+    height: 80px;
+    position: absolute; 
+    z-index: 998;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    background: #000;
+    display:block;
+}
+
+.slick-slide:hover .textover{
+    width: 94%; 
+    height: 80px;
+    position: absolute; 
+    /* padding-top: 40px; */
+	padding-top: 10px;
+    font-weight: bold;
+    z-index: 999;
+    color: #FFF;
+    display:block;
+}
+
+.slick-slide .textover, .slick-slide .blackover{
+    display:none;
+}

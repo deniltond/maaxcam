@@ -4,6 +4,7 @@ $(document).ready(function() {
 	})*/
 	
     $( "#slide1" ).click(function() {
+    	alert('Ponte Hercílio Luz');
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>');
         $('#currentSlide_title').html('Ponte Hercílio Luz');
         $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_ponte.jpg'>");
@@ -11,6 +12,7 @@ $(document).ready(function() {
     });
 
     $( "#slide2" ).click(function() {
+    	alert('Kioske');
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/39444/live/live/kiosque-beiramar-norte?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Kioske"></iframe>');
         $('#currentSlide_title').html('Kioske');
         $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_anuncie.png'>");

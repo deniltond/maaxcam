@@ -1,0 +1,61 @@
+
+div.cameras-wrapper, div.live-wrapper {
+/*   border-bottom: 1px solid #ccc;
+ */
+ }
+
+div.cameras {
+/*   border-right: 1px solid #ccc;
+ */  margin: 0 50px;
+}
+
+.slick-prev:before, .slick-next:before { color: gray; }   
+.slick-prev {
+  left: -35px;
+}
+.slick-next {
+  right: -35px;
+}
+div.cameras div.camera {
+/*   border-left: 1px solid #ccc;
+ */  
+  position: relative;
+  padding: 3%;
+}
+
+div.cameras div.camera img.camera {
+  display: block;
+  width: 100%;
+}
+
+div.cameras div.camera {
+  cursor: pointer;
+}
+
+div.cameras div.camera a {
+  text-decoration: none;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+div.animation {
+  border-bottom: 1px solid #ccc;
+}
+
+.slider-spot {
+  background-color: #d2b700;
+  font-size: 22px;
+  color:white;
+  padding: 15px 30px 15px 60px;
+}
+
+.slider-live {
+  background-color: #d21e00;
+  font-size: 23px;
+  color: white; 
+  padding: 15px 30px 15px 30px;
+  text-transform: uppercase;
+} 
+

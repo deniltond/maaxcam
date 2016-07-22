@@ -87,7 +87,7 @@ $(document).ready(function(){
 	    responsiveRefreshRate: 200,
 		responsiveBaseWidth: window
 	  }); 
-	
+
     // $('#button_left').click(function(){
     //     e.preventDefault();
     //     $("#thumb_indicators").scrollLeft(1);
