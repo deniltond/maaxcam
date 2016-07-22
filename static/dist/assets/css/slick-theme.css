@@ -87,7 +87,11 @@
 }
 .slick-prev:before
 {
-    content: '←';
+    /* content: '←'; */
+    /* content: '<'; */
+    content:'\25C0';
+    font-size: 20px;
+    font-weight: bold;
 }
 [dir='rtl'] .slick-prev:before
 {
@@ -105,7 +109,11 @@
 }
 .slick-next:before
 {
-    content: '→';
+    /* content: '→'; */
+    /* content: '>'; */
+    content:'\25BA';
+    font-size: 20px;
+    font-weight: bold;
 }
 [dir='rtl'] .slick-next:before
 {
