@@ -69,13 +69,49 @@ $(function() {
 //scroll indicators
 $(document).ready(function(){
 	
+//	$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { alert('a'); e.stopPropagation(); });
+
+	
 //	$(".dropdown-menu a").click(function() {
+//		alert('a');
 //	    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
 //	});
 
 //	$('.in,.open').removeClass('in open');
 	
-	$('li[class="dropdown open"]').removeClass('open');
+//    $('.dropdown').click(function(e) {
+////    	alert('a');
+//    	e.preventDefault();
+////        e.stopPropagation();
+////        $('.dropdown-toggle').dropdown();
+//    });
+//    
+//	$('li[class="dropdown open"]').removeClass('open');
+
+	 
+//	$('.dropdown').dropdown().on("hide.bs.dropdown", function(e) {
+//		alert('a');
+//        if ($.contains(dropdown, e.target)) {
+//            e.preventDefault();
+//        //or return false;
+//        }
+//    });
+
+//	$('.dropdown-menu').on("click.bs.dropdown", function (e) {
+//	$('.dropdown').click(function(e) {
+//		alert('a');
+////	    e.stopPropagation();
+////	    e.preventDefault();    
+//	    var target = $(e.target);
+//	    var dropdown = target.closest('.dropdown');
+//	    return !dropdown.hasClass('open') || !target.hasClass('keep-open');
+//	});
+	
+//	$('#myDropdown').on('hide.bs.dropdown', function () {
+//		e.stopPropagation();
+//////    e.preventDefault();
+//	    return false;
+//	});
 	
 	$("#owl-demo").owlCarousel({
 	    items : 4,
@@ -301,11 +337,15 @@ $(window).scroll(function(){
 
     "use strict";
 
-    $('.nav.navbar-nav li a').click(function () {
-        var $togglebtn = $(".navbar-toggle");
-        if (!($togglebtn.hasClass("collapsed")) && ($togglebtn.is(":visible"))){
-            $(".navbar-toggle").trigger("click");
-        }
+    $('.nav.navbar-nav li a ').click(function () {
+//    	alert($(this).attr('id'));
+    	if (($(this).attr('id') != "menusup") && ($(this).attr('id') != "menusup2")){
+//    		alert($(this).attr('id'));
+	        var $togglebtn = $(".navbar-toggle");
+	        if (!($togglebtn.hasClass("collapsed")) && ($togglebtn.is(":visible"))){
+	            $(".navbar-toggle").trigger("click");
+	        }
+    	}
     });
 
 })(jQuery);
@@ -662,6 +702,7 @@ $("#experimente_form").submit(function(e) {
 $("#contact_form").submit(function(e) {
     e.preventDefault();
     var data = {
+    	interesse: $("#input_interesse").val(),
         nome: $("#input_nome").val(),
         email: $("#input_email").val(),
         telefone: $("#input_telefone").val(),
@@ -671,7 +712,7 @@ $("#contact_form").submit(function(e) {
         
     };
 
-    if ( isValidEmail(data['email']) && (data['nome'].length > 1)) {
+    if ( isValidEmail(data['email']) && (data['nome'].length > 1) && (data['interesse'] != 0)) {
         $.ajax({
             type: "POST",
             url: "/contato_form/",
