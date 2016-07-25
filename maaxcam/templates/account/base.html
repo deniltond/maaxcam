@@ -6,15 +6,11 @@
 
 {% block scripts %}
   {{ block.super }}    
-<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css"> -->
-<!--         <link rel="stylesheet" href="{{staticfiles}}/css/AdminLTE.css">
- -->        
 {% endblock %}
 
 {% block body_class %}account{% endblock %}
+
+{% block site_brand %}<a class="navbar-brand" href="{% url "home_back" %}"><img src="{% static 'assets/images/logo_small_escuro.png'%}" alt="Logo" style="width: 120px;"></a>{% endblock %}
 
 {% block subnav %}
 <div class="panel panel-default">
@@ -40,6 +36,20 @@
             Indicações
         </a>
 
+    </div>
+
+    <div class="panel-heading"><strong>Suporte</strong></div>
+    <div class="list-group">
+    	
+        <a class="list-group-item" href="{% url "suporte_view" %}">
+            Atendimento
+        </a>
+        <!-- <a class="list-group-item" href="#">
+            Acesso Remoto
+        </a>
+        <a class="list-group-item" href="#">
+            Chamado
+        </a> -->
     </div>
 
     <div class="panel-heading"><strong>Acesso</strong></div>

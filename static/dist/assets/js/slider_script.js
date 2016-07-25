@@ -22,7 +22,7 @@ $(document).ready(function() {
     $( "#slide3" ).click(function() {
         $('#currentSlide').html('<iframe src="http://monitore.maaxcam.com.br/embed/37866/live/live/beira-mar-norte?autoplay=true&sound=true" width="685px" height="400px" frameborder="0" allowfullscreen title="Beira Mar Norte"></iframe>');
         $('#currentSlide_title').html('Beira Mar Norte');
-        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_gelatoo.png'>");
+        $('#propaganda_slide').html("<img src='/site_media/static/assets/images/publicidade_gelatoo.jpg'>");
 
     });
 

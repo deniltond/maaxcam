@@ -77,6 +77,18 @@
 </head>
 
 <body>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
     <div class="main-wrapper">
 
         <!-- =========================
@@ -317,7 +329,7 @@
                                 <div class="btn-box">
                                     <a href="#monitore_rua" class="btn btn-ghost scrollto">Saiba Mais</a>
                                     <!-- Video Lightbox on Click -->
-                                    <a href="http://youtu.be/SZEflIVnhH8" data-type="youtube" class="btn btn-white venobox"><i class="icon arrow_triangle-right_alt"></i>ASSISTA O VÍDEO</a>
+                                    <a href="https://www.youtube.com/embed/zw2PmQ-6Fd8" data-type="youtube" class="btn btn-white venobox"><i class="icon arrow_triangle-right_alt"></i>ASSISTA O VÍDEO</a>
                                 </div>
 
                             </div><!-- /End Intro-Section -->
@@ -405,7 +417,7 @@
 			<i class="icon arrow_triangle-right_alt2 wow fadeIn animated" data-wow-duration="1s" style="visibility: visible; position: absolute; margin-top: 25%; margin-left: 35%; animation: fadeIn 1s; -webkit-animation: fadeIn 1s; font-size: 38px;"></i>
         </div>
 		<div class="textover">Kioske</div>
-		<img src='{% static "assets/images/thumb_kioske.jpg"%}' class="camera" width="127" height="79" alt=""/>
+		<img src='{% static "assets/images/thumb_koxixos.jpg"%}' class="camera" width="127" height="79" alt=""/>
 		</a>
 	</div>
 	</div>
@@ -458,7 +470,7 @@
 			<i class="icon arrow_triangle-right_alt2 wow fadeIn animated" data-wow-duration="1s" style="visibility: visible; position: absolute; margin-top: 25%; margin-left: 35%; animation: fadeIn 1s; -webkit-animation: fadeIn 1s; font-size: 38px;"></i>
         </div>
 		<div class="textover">Koxixos</div>
-		<img src='{% static "assets/images/thumb_koxixos.jpg"%}' class="camera" width="127" height="79" alt=""/>
+		<img src='{% static "assets/images/thumb_kioske.jpg"%}' class="camera" width="127" height="79" alt=""/>
 		</a>
 	</div>
 	</div>
@@ -614,29 +626,16 @@
                             <!-- <p class="large">Entenda melhor como funciona e tudo o que a Maaxcam pode oferecer.</p> -->
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-12" style="align=center;">
 
-                          <iframe width="640" height="360" src="https://www.youtube.com/embed/SZEflIVnhH8" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div> -->
-
-                     <!-- <div class="row showcase" > -->
-                        <!-- <div class="col-md-4">
-                          <h4>Acessível de todos os dispositivos.</h4>
-                          <p>Praesentium voluptatem excepturi corporis labore architecto eos ea molestiae saepe facere at voluptate similique iusto porro pariatur, dolorum dolor magni sint eveniet iste. Eaque, aliquam, dignissimos.</p>
-                          <p><a href="#mobile-download" class="scrollto"><strong>Download the App for your smartphone ›</strong></a></p>
-                          <div class="btn-box">
-                              <a href="#canvas-bg" class="btn btn-color scrollto"><i class="icon arrow_carrot-2dwnn_alt"></i>Experiente já!</a>
-                          </div>
-                        </div> -->
                         <div class='col-sm-2'></div>
                         <div class="col-md-8" style="text-align: center;">
                         
                           <br>
-                          <div class="embed-responsive embed-responsive-16by9 venobox">
-                          	<iframe width="640" height="360" src="https://www.youtube.com/embed/SZEflIVnhH8"></iframe>
-                          </div>
+                          <div id="conheca_video" class="embed-responsive embed-responsive-16by9 venobox">
+                            <iframe width="640" height="360" src="https://www.youtube.com/embed/zw2PmQ-6Fd8" frameborder="0" allowfullscreen></iframe>
+<!--                           	<iframe width="640" height="360" src="http://youtu.be/SZEflIVnhH8"></iframe>
+ -->                          
+ 							</div>
                           <br>
                             <!-- <div class="img"> -->
                                 <!-- <img src="assets/images/features/feature1_1.jpg" alt="" class="img-responsive"> -->
@@ -804,7 +803,7 @@
                                         </div>
                                         <!-- Image-Right -->
                                         <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                          <img width=611; src="{% static 'assets/images/showcase3.jpg'%}" alt="" class="img-responsive">
+                                          <img width="480" src="{% static 'assets/images/showcase3.jpg'%}" alt="" class="img-responsive">
                                         </div>
                                     </div>
                                 </div>
@@ -841,7 +840,7 @@
                                         </div>
                                         <!-- Image-right -->
                                         <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                            <img src="{% static 'assets/images/features/feature1.jpg'%}" alt="">
+                                            <img src="{% static 'assets/images/features/feature1_5.jpg'%}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -1530,17 +1529,17 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                                     <div class="table-cell">
                                         <ul class="social-list">
                                             <li>
-                                                <a href="#">
+                                                <a href="https://www.facebook.com/Maaxcamaovivo/">
                                                     <i class="icon icon-facebook"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href="https://twitter.com/maaxcamaovivo">
                                                     <i class="icon icon-twitter"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href="https://plus.google.com/+MaaxcamBrFlorianopolis/">
                                                     <i class="icon icon-googleplus"></i>
                                                 </a>
                                             </li>
@@ -1557,9 +1556,10 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
 
                         <div class="col-md-6">
                             <!-- =========================
-                                MAILCHIMP SUBSCRIPTION FORM
+                                MAILCHIMP SUBSCRIPTION FORM class="mailchimp-subscribe"
                             ============================== -->
-                            <form class="mailchimp-subscribe" role="form" id="newsletter_form" action="/newsletter_form" method="post">
+                            <form id="newsletter_form" role="form" action="/newsletter_form/" method="post">
+                            {% csrf_token %} 
                                 <div class="table">
                                     <div class="table-row">
                                         <div class="table-cell getnewsletter">
@@ -1568,7 +1568,7 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                                         <div class="table-cell">
                                             <div class="input-group text-white">
                                                 <!-- Input Form -->
-                                                <input type="email" id="input_email" name="input_email" placeholder="Seu endereço de e-mail" class="form-control">
+                                                <input type="email" id="newsletter_email" name="newsletter_email" placeholder="Seu endereço de e-mail" class="form-control">
                                                 <!-- Submit Button -->
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-white" type="submit">Assine</button>
@@ -1578,9 +1578,8 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                                     </div><!-- /End Table-Row -->
                                 </div><!-- /End Table -->
                                 <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-                                    <!-- Notifications -->
-                                    <p class="mc-success"></p>
-                                    <p class="mc-failed"></p>
+                                    <p class="subscription-success"><i class="icon icon_check_alt2"></i> Você foi inscrito para receber nossas novidades!</p>
+                                    <p class="subscription-failed"><i class="icon icon_close_alt2"></i> Verifique seu email!</p>
                                 </div>
                             </form><!-- /End Mailchimp Subscribe Form -->
 
@@ -1672,7 +1671,10 @@ Conectamos sua câmera IP em nossa plataforma e você realiza o seu monitorament
                         <!-- Footer Right Col: Twitter Feed -->
                         <div class="col-md-4">
                                 <h5 class="text-white">Facebook</h5>
-                                <div class="tweet"></div>
+                                <div class="tweet">
+                                
+<div class="fb-page" data-href="https://www.facebook.com/Maaxcamaovivo/" data-tabs="timeline" data-width="340" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Maaxcamaovivo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Maaxcamaovivo/">Maaxcam  Câmeras ao vivo</a></blockquote></div>                                
+                                </div>
                         </div>
 
                         <!-- Footer Menu and Copy -->

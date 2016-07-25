@@ -14,10 +14,57 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 
 from account.models import Account
-from gerencial.models import Assinatura, Fatura, Plano
+from gerencial.models import Cliente, Assinatura, Fatura, Plano
+from gerencial.forms import ClienteForm
 
 
 # Create your views here.
+from django.forms import modelformset_factory
+from django.shortcuts import render
+
+def manage_cliente(request):
+#     ClienteForm = modelformset_factory(Plano, fields=('nome',))
+    formset = ClienteForm
+    if request.method == 'POST':
+        formset = ClienteForm(request.POST)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = ClienteForm()
+    return render(request, 'account/cliente.html', {'formset': formset})
+
+def manage_dependentes(request):
+    author_id = request.user.id
+    author = Cliente.objects.get(pk=author_id)
+    BookInlineFormSet = inlineformset_factory(Account, Dependente, fields=('nome','telefone'))
+    if request.method == "POST":
+        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+        if formset.is_valid():
+            formset.save()
+            # Do something. Should generally end with a redirect. For example:
+            messages.add_message(request, messages.SUCCESS, _("Dependentes atualizados com sucesso."))
+
+            return HttpResponseRedirect('/restrito')
+    else:
+        formset = BookInlineFormSet(instance=author)
+    return render(request, 'account/manage_dependentes.html', {'formset': formset})
+
+def manage_indicacoes(request):
+    author_id = request.user.id
+    author = Cliente.objects.get(pk=author_id)
+    BookInlineFormSet = inlineformset_factory(Account, Indicacao, fields=('nome','telefone'))
+    if request.method == "POST":
+        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+        if formset.is_valid():
+            formset.save()
+            # Do something. Should generally end with a redirect. For example:
+            messages.add_message(request, messages.SUCCESS, _("Indicacoes atualizados com sucesso."))
+            return HttpResponseRedirect('/restrito')
+    else:
+        formset = BookInlineFormSet(instance=author)
+    return render(request, 'account/manage_indicacoes.html', {'formset': formset})
+
 class FaturasView(LoginRequiredMixin, View):
     template_name = "account/faturas.html"
     messages = {
@@ -58,15 +105,15 @@ class AceiteForm(forms.Form):
 
 def atualiza_aceita(request):
     
-    account = Account.objects.get(user = request.user)
+    account = Cliente.objects.get(usuario = request.user)
     assinaturas = Assinatura.objects.filter(cliente = account)
           
-    if not assinaturas.exists():
-        messages.add_message(
-            self.request,
-            self.messages["assinaturas_empty"]["level"],
-            self.messages["assinaturas_empty"]["text"]
-        )
+#     if not assinaturas.exists():
+#         messages.add_message(
+#             self.request,
+#             self.messages["assinaturas_empty"]["level"],
+#             self.messages["assinaturas_empty"]["text"]
+#         )
      
     form = AceiteForm
     

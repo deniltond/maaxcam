@@ -18,7 +18,7 @@ from account import signals
 from account.conf import settings
 from account.forms import SignupForm, LoginUsernameForm
 from account.forms import ChangePasswordForm, PasswordResetForm, PasswordResetTokenForm
-from account.forms import SettingsForm, ClienteForm, ClienteModelForm
+from account.forms import SettingsForm
 from account.hooks import hookset
 from account.mixins import LoginRequiredMixin
 from account.models import SignupCode, EmailAddress, EmailConfirmation, Account, AccountDeletion
@@ -26,7 +26,7 @@ from account.utils import default_redirect, get_form_data
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 
-from gerencial.models import Fatura, Assinatura, Plano, Indicacao, Dependente, Prospect
+from gerencial.models import Cliente, Fatura, Assinatura, Plano, Indicacao, Dependente, Prospect
 
 class SignupView(FormView):
 
@@ -822,8 +822,25 @@ class RestrictView(LoginRequiredMixin, View):
             return redirect('/admin')
 #         return HttpResponse(self.greeting)
 #         faturas = Fatura.objects.filter(assinatura = )
+
+        #progress bar
+        progress = 100 #valor inicial pelo cadastro
+        pendencias = []
         
-        account = Account.objects.get(user = request.user)
+        try:
+            account = Cliente.objects.get(usuario = request.user)
+        except:
+            messages.add_message(
+                self.request,
+                self.messages["assinaturas_empty"]["level"],
+                self.messages["assinaturas_empty"]["text"]
+            )
+            #progress bar
+            progress -=50
+            pendencias.append('Contratação de Plano')
+            return render(request, self.template_name, {'assinaturas': None, 'fatura':None, 'progresso':progress, 'pendencias':pendencias}) #
+
+            
         assinaturas = Assinatura.objects.filter(cliente = account)
 #         assinaturas = Assinatura.objects.all()
 #         assinaturas = request.user.assinaturas_set.all()
@@ -838,9 +855,7 @@ class RestrictView(LoginRequiredMixin, View):
         fatura = FaturaTable()
 
 
-        #progress bar
-        progress = 100 #valor inicial pelo cadastro
-        pendencias = []
+
         if account.cpf is None:
             progress -= 10
             pendencias.append('CPF')
@@ -856,7 +871,7 @@ class RestrictView(LoginRequiredMixin, View):
                 str_pendencia = 'Aceite no contrato referente ao plano '+f.plano.nome
                 pendencias.append(str_pendencia)
 
-        return render(request, self.template_name, {'assinaturas': assinaturas, 'fatura':fatura, 'progresso':progress, 'pendencias':pendencias}) #
+        return render(request, self.template_name, {'cliente':account, 'assinaturas': assinaturas, 'fatura':fatura, 'progresso':progress, 'pendencias':pendencias}) #
 
 #     def get(self, *args, **kwargs):
 #         if not self.request.user.is_authenticated():
@@ -873,220 +888,220 @@ class RestrictView(LoginRequiredMixin, View):
         return ctx
 
 
-from django.forms import modelformset_factory
-from django.shortcuts import render
+# from django.forms import modelformset_factory
+# from django.shortcuts import render
+# 
+# def manage_cliente(request):
+# #     ClienteForm = modelformset_factory(Plano, fields=('nome',))
+#     formset = ClienteForm
+#     if request.method == 'POST':
+#         formset = ClienteForm(request.POST)
+#         if formset.is_valid():
+#             formset.save()
+#             # do something.
+#     else:
+#         formset = ClienteForm()
+#     return render(request, 'account/cliente.html', {'formset': formset})
 
-def manage_cliente(request):
-#     ClienteForm = modelformset_factory(Plano, fields=('nome',))
-    formset = ClienteForm
-    if request.method == 'POST':
-        formset = ClienteForm(request.POST)
-        if formset.is_valid():
-            formset.save()
-            # do something.
-    else:
-        formset = ClienteForm()
-    return render(request, 'account/cliente.html', {'formset': formset})
-
-
-from django.forms import ModelForm
-from django.forms import formset_factory, inlineformset_factory
-
-class DependenteModelForm(ModelForm):
-    class Meta:
-        model=Dependente
-        fields = ['nome', 'telefone']
-    
-def dependentes(request):
-    object_id = request.user.id
-    ClienteFormSet = inlineformset_factory \
-           (Account,Dependente,fields=('nome','telefone'), extra=3)
-    if object_id:
-        cliente=Account.objects.get(pk=object_id)
-    else:
-        cliente=Account()
-    if request.method == 'POST':
-        f= DependenteModelForm(request.POST, request.FILES, instance=cliente)
-        fs = ClienteFormSet(request.POST,instance=cliente)
-        if fs.is_valid() and f.is_valid():
-            f.save()
-            fs.save()
-            return HttpResponse('success')
-    else:
-        f  = DependenteModelForm(instance=cliente)
-        fs = ClienteFormSet(instance=cliente)
-#     return render('account/dependentes.html', \
-#                {'fs': fs,'f':f,'cliente':cliente})
-    return render(request, 'account/dependentes.html',  {'fs': fs,'f':f,'cliente':cliente})
-
-
-def manage_dependentes(request):
-    author_id = request.user.id
-    author = Account.objects.get(pk=author_id)
-    BookInlineFormSet = inlineformset_factory(Account, Dependente, fields=('nome','telefone'))
-    if request.method == "POST":
-        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
-        if formset.is_valid():
-            formset.save()
-            # Do something. Should generally end with a redirect. For example:
-            messages.add_message(request, messages.SUCCESS, _("Dependentes atualizados com sucesso."))
-
-            return HttpResponseRedirect('/restrito')
-    else:
-        formset = BookInlineFormSet(instance=author)
-    return render(request, 'account/manage_dependentes.html', {'formset': formset})
-
-def manage_indicacoes(request):
-    author_id = request.user.id
-    author = Account.objects.get(pk=author_id)
-    BookInlineFormSet = inlineformset_factory(Account, Indicacao, fields=('nome','telefone'))
-    if request.method == "POST":
-        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
-        if formset.is_valid():
-            formset.save()
-            # Do something. Should generally end with a redirect. For example:
-            messages.add_message(request, messages.SUCCESS, _("Indicacoes atualizados com sucesso."))
-            return HttpResponseRedirect('/restrito')
-    else:
-        formset = BookInlineFormSet(instance=author)
-    return render(request, 'account/manage_indicacoes.html', {'formset': formset})
-
-class ClienteModelView(UpdateView):
-    template_name = 'account/cliente.html'
-    model = Account
-    fields = ['nome']
-
-class ClienteModelViewX(UpdateView):
-    template_name = 'account/cliente.html'
-    form_class = ClienteModelForm
-    model = Account
-
-    # That should be all you need. If you need to do any more custom stuff 
-    # before saving the form, override the `form_valid` method, like this:
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-
-        # Do any custom stuff here
-
-        self.object.save()
-
-        return render_to_response(self.template_name, self.get_context_data())
+# 
+# from django.forms import ModelForm
+# from django.forms import formset_factory, inlineformset_factory
+# 
+# class DependenteModelForm(ModelForm):
+#     class Meta:
+#         model=Dependente
+#         fields = ['nome', 'telefone']
+#     
+# def dependentes(request):
+#     object_id = request.user.id
+#     ClienteFormSet = inlineformset_factory \
+#            (Account,Dependente,fields=('nome','telefone'), extra=3)
+#     if object_id:
+#         cliente=Cliente.objects.get(pk=object_id)
+#     else:
+#         cliente=Account()
+#     if request.method == 'POST':
+#         f= DependenteModelForm(request.POST, request.FILES, instance=cliente)
+#         fs = ClienteFormSet(request.POST,instance=cliente)
+#         if fs.is_valid() and f.is_valid():
+#             f.save()
+#             fs.save()
+#             return HttpResponse('success')
+#     else:
+#         f  = DependenteModelForm(instance=cliente)
+#         fs = ClienteFormSet(instance=cliente)
+# #     return render('account/dependentes.html', \
+# #                {'fs': fs,'f':f,'cliente':cliente})
+#     return render(request, 'account/dependentes.html',  {'fs': fs,'f':f,'cliente':cliente})
 
 
-class ClienteView(LoginRequiredMixin, FormView):
+# def manage_dependentes(request):
+#     author_id = request.user.id
+#     author = Cliente.objects.get(pk=author_id)
+#     BookInlineFormSet = inlineformset_factory(Account, Dependente, fields=('nome','telefone'))
+#     if request.method == "POST":
+#         formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+#         if formset.is_valid():
+#             formset.save()
+#             # Do something. Should generally end with a redirect. For example:
+#             messages.add_message(request, messages.SUCCESS, _("Dependentes atualizados com sucesso."))
+# 
+#             return HttpResponseRedirect('/restrito')
+#     else:
+#         formset = BookInlineFormSet(instance=author)
+#     return render(request, 'account/manage_dependentes.html', {'formset': formset})
+# 
+# def manage_indicacoes(request):
+#     author_id = request.user.id
+#     author = Cliente.objects.get(pk=author_id)
+#     BookInlineFormSet = inlineformset_factory(Account, Indicacao, fields=('nome','telefone'))
+#     if request.method == "POST":
+#         formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+#         if formset.is_valid():
+#             formset.save()
+#             # Do something. Should generally end with a redirect. For example:
+#             messages.add_message(request, messages.SUCCESS, _("Indicacoes atualizados com sucesso."))
+#             return HttpResponseRedirect('/restrito')
+#     else:
+#         formset = BookInlineFormSet(instance=author)
+#     return render(request, 'account/manage_indicacoes.html', {'formset': formset})
 
-    template_name = "account/cliente.html"
-    form_class = ClienteForm
-    redirect_field_name = "next"
-#     success_url = '/account/dados_cadastrais'
-    messages = {
-        "cliente_updated": {
-            "level": messages.SUCCESS,
-            "text": _("Dados cadastrais atualizados com sucesso.")
-        },
-    }
-
-    def get_form_class(self):
-        # @@@ django: this is a workaround to not having a dedicated method
-        # to initialize self with a request in a known good state (of course
-        # this only works with a FormView)
-        self.primary_email_address = EmailAddress.objects.get_primary(self.request.user)
-        return super(ClienteView, self).get_form_class()
-
-    def get_initial(self):
-        initial = super(ClienteView, self).get_initial()
-        if self.primary_email_address:
-            initial["email"] = self.primary_email_address.email
-        initial["nome"] = self.request.user.account.nome
-        initial["cpf"] = self.request.user.account.cpf
-        initial["telefone"] = self.request.user.account.telefone
-        initial["cep"] = self.request.user.account.cep
-        initial["cidade"] = self.request.user.account.cidade
-        initial["estado"] = self.request.user.account.estado
-
-
-#         initial["timezone"] = self.request.user.account.timezone
-#         initial["language"] = self.request.user.account.language
-        return initial
-
-    def form_valid(self, form):
-        self.update_cliente(form)
-        if self.messages.get("cliente_updated"):
-            messages.add_message(
-                self.request,
-                self.messages["cliente_updated"]["level"],
-                self.messages["cliente_updated"]["text"]
-            )
-        return redirect(self.get_success_url())
-
-    def update_cliente(self, form):
-#         self.update_email(form)
-        self.update_cliente(form)
- 
-#     def update_email(self, form, confirm=None):
-#         user = self.request.user
-#         if confirm is None:
-#             confirm = settings.ACCOUNT_EMAIL_CONFIRMATION_EMAIL
-#         # @@@ handle multiple emails per user
-#         email = form.cleaned_data["email"].strip()
-#         if not self.primary_email_address:
-#             user.email = email
-#             EmailAddress.objects.add_email(self.request.user, email, primary=True, confirm=confirm)
-#             user.save()
-#         else:
-#             if email != self.primary_email_address.email:
-#                 self.primary_email_address.change(email, confirm=confirm)
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ClienteView, self).get_context_data(**kwargs)
-        redirect_field_name = self.get_redirect_field_name()
-        ctx.update({
-            "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
-        })
-        return ctx
-
-    def update_cliente(self, form):
-        fields = {}
-        if "nome" in form.cleaned_data:
-            fields["nome"] = form.cleaned_data["nome"]
-        if "cpf" in form.cleaned_data:
-            fields["cpf"] = form.cleaned_data["cpf"]
-        if "telefone" in form.cleaned_data:
-            fields["telefone"] = form.cleaned_data["telefone"]
-        if "cep" in form.cleaned_data:
-            fields["cep"] = form.cleaned_data["cep"]
-        if "cidade" in form.cleaned_data:
-            fields["cidade"] = form.cleaned_data["cidade"]
-        if "estado" in form.cleaned_data:
-            fields["estado"] = form.cleaned_data["estado"]
+# class ClienteModelView(UpdateView):
+#     template_name = 'account/cliente.html'
+#     model = Account
+#     fields = ['nome']
+# 
+# class ClienteModelViewX(UpdateView):
+#     template_name = 'account/cliente.html'
+#     form_class = ClienteModelForm
+#     model = Account
+# 
+#     # That should be all you need. If you need to do any more custom stuff 
+#     # before saving the form, override the `form_valid` method, like this:
+# 
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+# 
+#         # Do any custom stuff here
+# 
+#         self.object.save()
+# 
+#         return render_to_response(self.template_name, self.get_context_data())
+# 
+# 
+# class ClienteView(LoginRequiredMixin, FormView):
+# 
+#     template_name = "account/cliente.html"
+#     form_class = ClienteForm
+#     redirect_field_name = "next"
+# #     success_url = '/account/dados_cadastrais'
+#     messages = {
+#         "cliente_updated": {
+#             "level": messages.SUCCESS,
+#             "text": _("Dados cadastrais atualizados com sucesso.")
+#         },
+#     }
+# 
+#     def get_form_class(self):
+#         # @@@ django: this is a workaround to not having a dedicated method
+#         # to initialize self with a request in a known good state (of course
+#         # this only works with a FormView)
+#         self.primary_email_address = EmailAddress.objects.get_primary(self.request.user)
+#         return super(ClienteView, self).get_form_class()
+# 
+#     def get_initial(self):
+#         initial = super(ClienteView, self).get_initial()
+#         if self.primary_email_address:
+#             initial["email"] = self.primary_email_address.email
+#         initial["nome"] = self.request.user.account.nome
+#         initial["cpf"] = self.request.user.account.cpf
+#         initial["telefone"] = self.request.user.account.telefone
+#         initial["cep"] = self.request.user.account.cep
+#         initial["cidade"] = self.request.user.account.cidade
+#         initial["estado"] = self.request.user.account.estado
+# 
+# 
+# #         initial["timezone"] = self.request.user.account.timezone
+# #         initial["language"] = self.request.user.account.language
+#         return initial
+# 
+#     def form_valid(self, form):
+#         self.update_cliente(form)
+#         if self.messages.get("cliente_updated"):
+#             messages.add_message(
+#                 self.request,
+#                 self.messages["cliente_updated"]["level"],
+#                 self.messages["cliente_updated"]["text"]
+#             )
+#         return redirect(self.get_success_url())
+# 
+#     def update_cliente(self, form):
+# #         self.update_email(form)
+#         self.update_cliente(form)
+#  
+# #     def update_email(self, form, confirm=None):
+# #         user = self.request.user
+# #         if confirm is None:
+# #             confirm = settings.ACCOUNT_EMAIL_CONFIRMATION_EMAIL
+# #         # @@@ handle multiple emails per user
+# #         email = form.cleaned_data["email"].strip()
+# #         if not self.primary_email_address:
+# #             user.email = email
+# #             EmailAddress.objects.add_email(self.request.user, email, primary=True, confirm=confirm)
+# #             user.save()
+# #         else:
+# #             if email != self.primary_email_address.email:
+# #                 self.primary_email_address.change(email, confirm=confirm)
+# 
+#     def get_context_data(self, **kwargs):
+#         ctx = super(ClienteView, self).get_context_data(**kwargs)
+#         redirect_field_name = self.get_redirect_field_name()
+#         ctx.update({
+#             "redirect_field_name": redirect_field_name,
+#             "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
+#         })
+#         return ctx
+# 
+#     def update_cliente(self, form):
+#         fields = {}
+#         if "nome" in form.cleaned_data:
+#             fields["nome"] = form.cleaned_data["nome"]
+#         if "cpf" in form.cleaned_data:
+#             fields["cpf"] = form.cleaned_data["cpf"]
+#         if "telefone" in form.cleaned_data:
+#             fields["telefone"] = form.cleaned_data["telefone"]
+#         if "cep" in form.cleaned_data:
+#             fields["cep"] = form.cleaned_data["cep"]
 #         if "cidade" in form.cleaned_data:
 #             fields["cidade"] = form.cleaned_data["cidade"]
-#         if "cidade" in form.cleaned_data:
-#             fields["cidade"] = form.cleaned_data["cidade"]
-#         if "cidade" in form.cleaned_data:
-#             fields["cidade"] = form.cleaned_data["cidade"]
-#         if "cidade" in form.cleaned_data:
-#             fields["cidade"] = form.cleaned_data["cidade"]
-#         if "timezone" in form.cleaned_data:
-#             fields["timezone"] = form.cleaned_data["timezone"]
-#         if "language" in form.cleaned_data:
-#             fields["language"] = form.cleaned_data["language"]
-        if fields:
-            account = self.request.user.account
-            for k, v in fields.items():
-                setattr(account, k, v)
-            account.save()
-
-    def get_redirect_field_name(self):
-        return self.redirect_field_name
-  
-    def get_success_url(self, fallback_url=None, **kwargs):
-        if fallback_url is None:
-            fallback_url = '/restrito'
-        kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
-        return default_redirect(self.request, fallback_url, **kwargs)
+#         if "estado" in form.cleaned_data:
+#             fields["estado"] = form.cleaned_data["estado"]
+# #         if "cidade" in form.cleaned_data:
+# #             fields["cidade"] = form.cleaned_data["cidade"]
+# #         if "cidade" in form.cleaned_data:
+# #             fields["cidade"] = form.cleaned_data["cidade"]
+# #         if "cidade" in form.cleaned_data:
+# #             fields["cidade"] = form.cleaned_data["cidade"]
+# #         if "cidade" in form.cleaned_data:
+# #             fields["cidade"] = form.cleaned_data["cidade"]
+# #         if "timezone" in form.cleaned_data:
+# #             fields["timezone"] = form.cleaned_data["timezone"]
+# #         if "language" in form.cleaned_data:
+# #             fields["language"] = form.cleaned_data["language"]
+#         if fields:
+#             account = self.request.user.account
+#             for k, v in fields.items():
+#                 setattr(account, k, v)
+#             account.save()
+# 
+#     def get_redirect_field_name(self):
+#         return self.redirect_field_name
+#   
+#     def get_success_url(self, fallback_url=None, **kwargs):
+#         if fallback_url is None:
+#             fallback_url = '/restrito'
+#         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
+#         return default_redirect(self.request, fallback_url, **kwargs)
 
 
 from django.core.mail import EmailMessage
@@ -1126,7 +1141,8 @@ def contato_form(request):
 @csrf_exempt
 def newsletter_form(request):
     if request.method == 'POST':
-        email =  request.POST['input_email']
+        #email =  request.POST['newsletter_email']
+        email = request.POST.get('email', "Não informado")
         
         Prospect.objects.create(nome= 'Indefinido', fonte = 1, categoria = 1, interesse = 1, email = email)
 

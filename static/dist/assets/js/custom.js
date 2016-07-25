@@ -529,16 +529,17 @@ function isValidEmail(emailAddress) {
 /* ==========================================
    LOCAL NEWSLETTER
 ============================================= */
-$("#subscribe").submit(function(e) {
-    e.preventDefault();
+$("#newsletter_form").submit(function(e) {
+	e.preventDefault();
     var data = {
-        email: $("#s-email").val()
+        email: $("#newsletter_email").val()
     };
-
-    if ( isValidEmail(data['email']) ) {
+   
+    if ( isValidEmail(data['email'])) {
+//    	alert($("#newsletter_email").val());
         $.ajax({
             type: "POST",
-            url: "assets/php/subscribe.php",
+            url: "/newsletter_form/",
             data: data,
             success: function() {
                 $('.subscription-success').fadeIn(1000);
@@ -546,9 +547,10 @@ $("#subscribe").submit(function(e) {
             }
         });
     } else {
-        $('.subscription-failed').fadeIn(1000);
-        $('.subscription-success').fadeOut(500);
+    	 $('.subscription-failed').fadeIn(1000);
+         $('.subscription-success').fadeOut(500);
     }
+
 
     return false;
 });
@@ -628,22 +630,22 @@ $("#experimente_form").submit(function(e) {
     };
     
     if (data['nome'].length < 1){
-    	$('.signup-failed').html('Informe seu nome.');
+    	$('.signup-failed').html('Informe seu nome');
     	$('.signup-failed').fadeIn(1000);
     	return false;
     }
     if (data['telefone'].length < 1){
-    	$('.signup-failed').html('Informe seu telefone.');
+    	$('.signup-failed').html('Informe seu telefone');
     	$('.signup-failed').fadeIn(1000);
     	return false;
     }
     if (data['email'].length < 1){
-    	$('.signup-failed').html('Informe seu email.');
+    	$('.signup-failed').html('Informe seu email');
     	$('.signup-failed').fadeIn(1000);
     	return false;
     }
     if (data['cidade'].length < 1){
-    	$('.signup-failed').html('Informe sua cidade.');
+    	$('.signup-failed').html('Informe sua cidade');
     	$('.signup-failed').fadeIn(1000);
     	return false;
     }
@@ -651,36 +653,16 @@ $("#experimente_form").submit(function(e) {
 //    && (data['password'].length > 1
     if ( isValidEmail(data['email'])) {
 		$('#experimente').html('<iframe src="http://monitore.maaxcam.com.br/embed/37900/live/live/ponte-hercilio-luz?autoplay=true&sound=true" width="585px" height="390px" frameborder="0" allowfullscreen title="Ponte Hercílio Luz"></iframe>');
-//		$('#experimente').html('Teste OK');
-//		alert('ok');
-//        $.ajax({
-//            type: "POST",
-//            url: "/experimente_form/",
-//            data: data,
-//            success: function() {
-//            	console.log('sucess')
-//                $('.signup-success').fadeIn(1000);
-//                $('.signup-failed').fadeOut(0);
-//            }
-//        });
-        
-//        var jqxhr = $.post( "/experimente_form/" )
-//        .done(function() { $('.signup-success').fadeIn(1000); })
-//        .fail(function() { $('.signup-failed').fadeIn(1000); })
-//        .always(function() { $('.signup-failed').html("<i class='icon icon_check_alt2'></i> <strong>Parabéns! Acesso concedido.</strong>"); });
 	    if ( isValidEmail(data['email'])) {
 	        $.ajax({
 	            type: "POST",
 	            url: "/experimente_form/",
 	            data: data,
 	            success: function() {
-//	            	alert('sucess')
 	                $('.signup-success').fadeIn(1000);
 	                $('.signup-failed').fadeOut(500);
 	            }
 	        });
-//	        $('.sm-success').fadeIn(1000);
-//	        $('.sm-failed').fadeOut(500);
 	    } else {
 	        $('.sm-failed').fadeIn(1000);
 	        $('.sm-success').fadeOut(500);
@@ -733,123 +715,6 @@ $("#contact_form").submit(function(e) {
     return false;
 });
 
-/* =======================================================================
-   DOUGHNUT CHART
-========================================================================== */
-var isdonut = 0;
-
-$('.start-charts').waypoint(function(direction){
-    if (isdonut == 1){}
-        else {
-            var doughnutData = [
-                {
-                    value: 50,
-                    color:"#C0392B",
-                    highlight: "#EA402F",
-                    label: "Beautiful Design"
-                },
-                {
-                    value: 25,
-                    color: "#323A45",
-                    highlight: "#4C5B70",
-                    label: "Responsive Layout"
-                },
-                {
-                    value: 15,
-                    color: "#949FB1",
-                    highlight: "#A8B3C5",
-                    label: "Persuasive Call to Action"
-                },
-                {
-                    value: 5,
-                    color: "#27AE60",
-                    highlight: "#29C36A",
-                    label: "Social Proof"
-                }
-
-            ];
-
-            var doughnut2Data = [
-                {
-                    value: 827,
-                    color:"#C0392B",
-                    highlight: "#EA402F",
-                    label: "Cups of Coffee"
-                },
-                {
-                    value: 1775,
-                    color: "#323A45",
-                    highlight: "#4C5B70",
-                    label: "Code Hours"
-                },
-                {
-                    value: 580,
-                    color: "#2980B9",
-                    highlight: "#2F97DC",
-                    label: "Design Hours"
-                },
-                {
-                    value: 540,
-                    color: "#949FB1",
-                    highlight: "#A8B3C5",
-                    label: "Songs Listened"
-                }
-            ];
-
-
-
-            var ctx = document.getElementById("chart-area").getContext("2d");
-            window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : false});
-
-            var ctx = document.getElementById("chart2-area").getContext("2d");
-            window.myDoughnut = new Chart(ctx).Doughnut(doughnut2Data, {responsive : false});
-
-            isdonut = 1;
-        }
-});
-
-/* =======================================================================
-   LINE CHART
-========================================================================== */
-var isline = 0;
-
-$('.start-line').waypoint(function(direction){
-    if (isline == 1){}
-        else {
-
-            var lineChartData = {
-                labels : ["January","February","March","April","May","June","July"],
-                datasets : [
-                    {
-                        label: "My First dataset",
-                        fillColor : "rgba(192,57,43,0.2)",
-                        strokeColor : "rgba(192,57,43,1)",
-                        pointColor : "rgba(192,57,43,1)",
-                        pointStrokeColor : "#fff",
-                        pointHighlightFill : "#fff",
-                        pointHighlightStroke : "rgba(192,57,43,1)",
-                        data : [10,20,20,15,25,37,32]
-                    },
-                    {
-                        label: "My Second dataset",
-                        fillColor : "rgba(50,58,69,0.2)",
-                        strokeColor : "rgba(50,58,69,1)",
-                        pointColor : "rgba(50,58,69,1)",
-                        pointStrokeColor : "#fff",
-                        pointHighlightFill : "#fff",
-                        pointHighlightStroke : "rgba(50,58,69,1)",
-                        data : [20,23,33,57,74,81,96]
-                    }
-                ]
-
-            };
-
-            var ctx = document.getElementById("line-canvas").getContext("2d");
-            window.myLine = new Chart(ctx).Line(lineChartData, {responsive: true});
-
-            isline = 1;
-        }
-});
 
 /* =======================================================================
    SIGNUP-DIVIDER ANIMATED POLYGON BACKGROUND

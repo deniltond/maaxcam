@@ -1,0 +1,113 @@
+{% extends "account/base.html" %}
+{% load bootstrap %}
+
+
+{% load table_tags %}
+
+{% block body_class %}account account-settings{% endblock %}
+
+{% block head_title %}Restrito{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+        
+        
+         <h1>Suporte</h1>
+
+	<br><br>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Não consigo acessar minha câmera</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">O acesso a câmera depende de conexão desta à internet. Para verificar, sugerimos os passos:
+      <ul>
+      	<li>Verifique sua conexão à internet</li>
+      	<li>Execute um comando ping no endereço de rede de sua câmera</li>
+      	<li>Reinicie sua câmera</li>
+      </ul>
+      
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Não consigo acessar o sistema</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        As câmeras estão travadas</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        
+        
+        <div class="col-md-6 center">
+        	<h2>Contato</h2>
+        	
+        	<p>Dispomos de diferente canais de atendimento:</p>
+<!--         	<ul>
+        		<li>Telefone</li>
+        		<li>Chat</li>
+        		<li>Email</li>
+        		<li>Contato</li>
+        	</ul> -->
+        		
+        	<br>
+        	
+        	 <h4><img src="/site_media/static/assets/images/whatsapp_small.jpg">(48) 9999-0000</h4>
+        	
+        </div>
+        <div class="col-md-6">
+        	<h2>Acesso remoto</h2>
+        	
+        	<p>Para que possamos acessar seu computar, será necessário que instale em sua máquina o programa <a href="https://www.teamviewer.com/pt/download/">TeamViewer</a>. O acesso se dará mediante senha fornecida pelo solicitante.</p>
+        	<br>
+        	
+        	
+        	<a href="https://www.teamviewer.com/pt/download/">
+        		<img src="/site_media/static/assets/images/teamviewer_logo.jpg">
+        	</a>
+        	
+        </div>
+        
+        
+    </div>
+    
+
+
+    
+{% endblock %}
+
+
+
+
+

@@ -35,15 +35,15 @@ from account.signals import signup_code_sent, signup_code_used
 class Account(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="account", verbose_name=_("user"))
-    nome = models.CharField(max_length=220, verbose_name=u"Nome", help_text="Nome do Cliente", blank=True, null=True)
-    cpf = models.CharField(max_length=200, verbose_name=u"CPF", blank=True, null=True)
-    telefone = models.CharField(max_length=200, verbose_name=u"Fone", null=True, blank=True)
-    cep=models.CharField(max_length=200, verbose_name=u"CEP", null=True, blank=True)
-    logradouro=models.CharField(max_length=200, verbose_name=u"Logradouro", null=True, blank=True, help_text="Nome da rua, avenida, etc.")
-    complemento=models.CharField(max_length=200, verbose_name=u"Complemento", null=True, blank=True)
-    bairro=models.CharField(max_length=200, verbose_name=u"Bairro", null=True, blank=True)
-    cidade=models.CharField(max_length=200, verbose_name=u"Cidade", null=True, blank=True)
-    estado=models.CharField(max_length=2, verbose_name=u"Estado", null=True, blank=True)
+#     nome = models.CharField(max_length=220, verbose_name=u"Nome", help_text="Nome do Cliente", blank=True, null=True)
+#     cpf = models.CharField(max_length=200, verbose_name=u"CPF", blank=True, null=True)
+#     telefone = models.CharField(max_length=200, verbose_name=u"Fone", null=True, blank=True)
+#     cep=models.CharField(max_length=200, verbose_name=u"CEP", null=True, blank=True)
+#     logradouro=models.CharField(max_length=200, verbose_name=u"Logradouro", null=True, blank=True, help_text="Nome da rua, avenida, etc.")
+#     complemento=models.CharField(max_length=200, verbose_name=u"Complemento", null=True, blank=True)
+#     bairro=models.CharField(max_length=200, verbose_name=u"Bairro", null=True, blank=True)
+#     cidade=models.CharField(max_length=200, verbose_name=u"Cidade", null=True, blank=True)
+#     estado=models.CharField(max_length=2, verbose_name=u"Estado", null=True, blank=True)
     
     
     timezone = TimeZoneField(_("timezone"), editable=False)
@@ -110,6 +110,9 @@ class Account(models.Model):
             value = pytz.timezone(settings.TIME_ZONE).localize(value)
         return value.astimezone(pytz.timezone(timezone))
 
+    class Meta:
+        verbose_name = u'Conta'
+        verbose_name_plural = u'Contas'
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def user_post_save(sender, **kwargs):
@@ -379,8 +382,8 @@ class AccountDeletion(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
     email = models.EmailField(max_length=254)
-    date_requested = models.DateTimeField(_("date requested"), default=timezone.now)
-    date_expunged = models.DateTimeField(_("date expunged"), null=True, blank=True)
+    date_requested = models.DateTimeField(_(u"Data da Requisição"), default=timezone.now)
+    date_expunged = models.DateTimeField(_(u"Data do expurgo"), null=True, blank=True)
 
     class Meta:
 #         verbose_name = _("account deletion")

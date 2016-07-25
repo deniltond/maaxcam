@@ -5,7 +5,7 @@ from django.conf.urls import url
 from account.views import SignupView, LoginView, LogoutView, DeleteView
 from account.views import ConfirmEmailView
 from account.views import ChangePasswordView, PasswordResetView, PasswordResetTokenView
-from account.views import SettingsView, ClienteView, ClienteModelView, manage_cliente, dependentes, manage_dependentes, manage_indicacoes
+from account.views import SettingsView #, ClienteView, ClienteModelView, manage_cliente, dependentes, manage_dependentes, manage_indicacoes
 
 
 urlpatterns = [
@@ -19,10 +19,10 @@ urlpatterns = [
     url(r"^settings/$", SettingsView.as_view(), name="account_settings"),
     url(r"^delete/$", DeleteView.as_view(), name="account_delete"),
     
-    url(r'dados_cadastrais/', ClienteView.as_view(), name='cliente_view'),
+#     url(r'dados_cadastrais/', ClienteView.as_view(), name='cliente_view'),
 #     url(r'dependentes/', dependentes, name='dependentes_view'),
-    url(r'manage_dependentes/', manage_dependentes, name='manage_dependentes_view'),
-    url(r'manage_indicacoes/', manage_indicacoes, name='manage_indicacoes_view'),
+#     url(r'manage_dependentes/', manage_dependentes, name='manage_dependentes_view'),
+#     url(r'manage_indicacoes/', manage_indicacoes, name='manage_indicacoes_view'),
 
 #     url(r'dados_cadastrais/(?P<pk>[0-9]+)/$', ClienteModelView.as_view(), name='cliente_view'),
 #     url(r'account/(?P<pk>[0-9]+)/$', ClienteModelView.as_view(), name='cliente_view'),
